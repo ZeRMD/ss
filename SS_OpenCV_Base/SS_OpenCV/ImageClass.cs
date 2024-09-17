@@ -10,6 +10,7 @@ using Emgu.CV.ImgHash;
 using System.Linq;
 using Emgu.CV.XFeatures2D;
 using System.Diagnostics.Eventing.Reader;
+using System.Runtime.Remoting.Channels;
 
 namespace SS_OpenCV
 {
@@ -209,6 +210,8 @@ namespace SS_OpenCV
                 byte* dataPtr = (byte*)m.ImageData.ToPointer(); // Pointer to the image
                 byte blue, green, red;
 
+                double teste;
+
                 int width = img.Width;
                 int height = img.Height;
                 int nChan = m.NChannels; // number of channels - 3
@@ -226,11 +229,53 @@ namespace SS_OpenCV
                             green = dataPtr[1];
                             red = dataPtr[2];
 
-                            //Calculate the negative (newChannelValue = 255 - oldChannelValue) and store in the image
-
+                            /* Maneira mais lenta
                             dataPtr[0] = BrightContrastCalculation(contrast, bright, blue);
                             dataPtr[1] = BrightContrastCalculation(contrast, bright, green);
                             dataPtr[2] = BrightContrastCalculation(contrast, bright, red);
+                            */
+                            
+                            teste = (contrast * blue) + bright;
+
+                            if (teste < 0)
+                                dataPtr[0] = 0;
+                            else
+                            {
+                                if (teste > 255)
+                                    dataPtr[0] = 255;
+                                else
+                                {
+                                    dataPtr[0] = (byte)Math.Round(teste);
+                                }
+                            }
+
+                            teste = (contrast * green) + bright;
+
+                            if (teste < 0)
+                                dataPtr[1] = 0;
+                            else
+                            {
+                                if (teste > 255)
+                                    dataPtr[1] = 255;
+                                else
+                                {
+                                    dataPtr[1] = (byte)Math.Round(teste);
+                                }
+                            }
+
+                            teste = (contrast * red) + bright;
+
+                            if (teste < 0)
+                                dataPtr[2] = 0;
+                            else
+                            {
+                                if (teste > 255)
+                                    dataPtr[2] = 255;
+                                else
+                                {
+                                    dataPtr[2] = (byte)Math.Round(teste);
+                                }
+                            }
 
                             // advance the pointer to the next pixel
                             dataPtr += nChan;
@@ -250,7 +295,9 @@ namespace SS_OpenCV
                 return 0;
             if (result > 255)
                 return 255;
-            return (byte)result;
-        } 
+            return (byte)Math.Round(result);
+        }
+
+
     }
 }
