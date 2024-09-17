@@ -1,0 +1,268 @@
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\ResolveAssemblyReference.cache
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2012-2013\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\ResolveAssemblyReference.cache
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\andre\Users\atm\Aulas\Sistemas Sensoriais\2013-2014\Pratica\SS_OpenCV\SS_OpenCV\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2014-2015\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\andre\users\atm\Aulas\Sistemas Sensoriais\2015-2016\pratica\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\pratica\SS_OpenCV_1.94_2015_09_09\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_12\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.94_2016_09_15\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.95_2016_09_16\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.95_2016_09_16\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.95_2016_09_16\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\andremorA\SkyDrive\Aulas\SS\2016-2017\pratica\SS_OpenCV_1.96_2016_09_20\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\jplad\Downloads\SS_OpenCV\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\jplad\Desktop\SS_OpenCV1\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\jplad\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojResolveAssemblyReference.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.Cache
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\2018-2019\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojAssemblyReference.cache
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Desktop\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.dll
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojAssemblyReference.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojAssemblyReference.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2020-2021\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.dll
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojAssemblyReference.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\Google Drive\Aulas\SS\SS 2021-2022\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csprojAssemblyReference.cache
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.pdb
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ZedGraph.dll
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.World.xml
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.FilterForm.resources
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.dll
+G:\My Drive\Aulas\SS\SS 2022-2023\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ZedGraph.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.World.xml
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.AssemblyReference.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Fruit_SS.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Fruit_SS.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2023-2024\Praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.AssemblyReference.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ZedGraph.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.World.xml
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CopyComplete
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.AssemblyReference.cache
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.AuthorsForm.resources
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.InputBox.resources
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.MainForm.resources
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.Properties.Resources.resources
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb

@@ -1,0 +1,17 @@
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\ResolveAssemblyReference.cache
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\OpenCV_Work.Properties.Resources.resources
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\OpenCV_Work.csproj.GenerateResource.Cache
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\OpenCV_Work.exe
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\OpenCV_Work.pdb
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.CV.dll
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.Util.dll
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\zlib.net.dll
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.Util.xml
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.CV.xml
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\OpenCV_Work.exe
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\OpenCV_Work.pdb
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.CV.UI.dll
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\ZedGraph.dll
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\Emgu.CV.UI.xml
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\bin\Debug\ZedGraph.xml
+D:\Users\atm\Aulas\Sistemas Sensoriais\2009-2010\praticas\OpenCV_Work\OpenCV_Work\obj\Debug\OpenCV_Work.MainForm.resources
