@@ -266,3 +266,12 @@ C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.GenerateResource.cache
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.CoreCompileInputs.cache
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.exe
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.pdb
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe.config
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.exe
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_OpenCV.pdb
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ZedGraph.dll
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.UI.xml
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Emgu.CV.World.xml
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\Forms.pdb
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
+C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.Up2Date

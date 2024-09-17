@@ -188,6 +188,127 @@ namespace SS_OpenCV
 
         }
 
+        /// <summary>
+        /// Calculate the image negative
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void negativeLentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.NegativeLento(img);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor 
+        }
+
+        /// <summary>
+        /// Calculate the image grey using only red
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.ConvertToGrayChannel(img, 2);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor 
+        }
+
+        /// <summary>
+        /// Calculate the image grey using only green
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void greenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.ConvertToGrayChannel(img, 1);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        /// <summary>
+        /// Calculate the image grey using only blue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void blueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.ConvertToGrayChannel(img, 0);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void brightContrastToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Brilho?"); 
+            form1.ShowDialog();
+            int brilho = Convert.ToInt32(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((brilho < -255) && (brilho > 255))
+                return;
+
+            InputBox form2 = new InputBox("Contraste?"); 
+            form2.ShowDialog();
+            int contraste= Convert.ToInt32(form2.ValueTextBox.Text);
+            form2.Hide();
+
+            if ((brilho < 0) && (brilho > 3))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.BrightContrast(img, brilho, contraste);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
     }
 
 
