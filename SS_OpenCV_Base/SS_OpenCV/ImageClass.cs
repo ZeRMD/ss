@@ -440,7 +440,7 @@ namespace SS_OpenCV
 
         /// <summary>
         /// Aplica zoom
-        /// dx = [-10,10] / dy = [-10,10]
+        /// scaleFactor
         /// </summary>
         /// <param name="img">Image</param>
         public static void Scale(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor)
@@ -477,8 +477,8 @@ namespace SS_OpenCV
                     {
                         for (pixelNoDestinoX = 0; pixelNoDestinoX < widthDestino; pixelNoDestinoX++)
                         {
-                            PixelNaOrigemX = 1; //FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI
-                            PixelNaOrigemY = 1; //FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI
+                            PixelNaOrigemX = (int)Math.Round(pixelNoDestinoX/scaleFactor); 
+                            PixelNaOrigemY = (int)Math.Round(pixelNoDestinoY/scaleFactor);
 
                             if ((PixelNaOrigemX < 0) || (PixelNaOrigemX >= widthOrigem) || (PixelNaOrigemY >= heightOrigem) || (PixelNaOrigemY < 0))
                             {
@@ -505,6 +505,17 @@ namespace SS_OpenCV
                 }
             }
         }
+
+        /// <summary>
+        /// Aplica zoom
+        /// scaleFactor
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Scale_point_xy(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
+        {
+
+        }
+
     }
 
 }
