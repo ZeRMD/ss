@@ -10,6 +10,7 @@ namespace SS_OpenCV
     public partial class MainForm : Form
     {
         Image<Bgr, Byte> img = null; // working image
+        Image<Bgr, Byte> imgBlack = null; // black image
         Image<Bgr, Byte> imgUndo = null; // undo backup image - UNDO
         string title_bak = "";
 
@@ -294,7 +295,7 @@ namespace SS_OpenCV
             int contraste= Convert.ToInt32(form2.ValueTextBox.Text);
             form2.Hide();
 
-            if ((brilho < 0) && (brilho > 3))
+            if ((contraste < 0) && (contraste > 3))
                 return;
 
             Cursor = Cursors.WaitCursor; // clock cursor 
@@ -303,6 +304,76 @@ namespace SS_OpenCV
             imgUndo = img.Copy();
 
             ImageClass.BrightContrast(img, brilho, contraste);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        /// <summary>
+        /// Translation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void translationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Dx?");
+            form1.ShowDialog();
+            int dx = Convert.ToInt32(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((dx < -10) && (dx > 10))
+                return;
+
+            InputBox form2 = new InputBox("Dy?");
+            form2.ShowDialog();
+            int dy = Convert.ToInt32(form2.ValueTextBox.Text);
+            form2.Hide();
+
+            if ((dy < -10) && (dy > 10))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.Translation(img, img.Copy(), dx, dy);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        /// <summary>
+        /// Rotation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rotationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Angle?");
+            form1.ShowDialog();
+            double angle = Convert.ToDouble(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((angle < -360) && (angle > 360))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.Rotation(img, img.Copy(), (float)angle);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen

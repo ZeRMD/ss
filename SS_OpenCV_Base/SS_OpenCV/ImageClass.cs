@@ -11,6 +11,9 @@ using System.Linq;
 using Emgu.CV.XFeatures2D;
 using System.Diagnostics.Eventing.Reader;
 using System.Runtime.Remoting.Channels;
+using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace SS_OpenCV
 {
@@ -298,6 +301,210 @@ namespace SS_OpenCV
             return (byte)Math.Round(result);
         }
 
+        /// <summary>
+        /// Aplica Translação
+        /// dx = [-10,10] / dy = [-10,10]
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Translation(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, int dx, int dy)
+        {
+            unsafe
+            {
 
+                MIplImage m1 = imgDestino.MIplImage;
+                byte* dataPtrDestino = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                MIplImage m2 = imgOrigem.MIplImage;
+                byte* dataPtrOrigem = (byte*)m2.ImageData.ToPointer(); // Pointer to the imagem origem
+
+                int widthDestino = imgDestino.Width;
+                int heightDestino = imgDestino.Height;
+                int widthOrigem = imgOrigem.Width;
+                int heightOrigem = imgOrigem.Height;
+                int nChanDestino = m1.NChannels; // number of channels - 3
+                int paddingDestino = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotalDestino = m1.WidthStep;
+                int pixelNoDestinoX, pixelNoDestinoY;
+
+                int PixelNaOrigemX;
+                int PixelNaOrigemY;
+
+                byte* dataPtrAjuda;
+
+                if (nChanDestino == 3) // image in RGB
+                {
+                    for (pixelNoDestinoY = 0; pixelNoDestinoY < heightDestino; pixelNoDestinoY++)
+                    {
+                        for (pixelNoDestinoX = 0; pixelNoDestinoX < widthDestino; pixelNoDestinoX++)
+                        {
+                            PixelNaOrigemX = pixelNoDestinoX - dx;
+                            PixelNaOrigemY = pixelNoDestinoY - dy;
+
+                            if ((PixelNaOrigemX < 0) || (PixelNaOrigemX >= widthOrigem) || (PixelNaOrigemY >= heightOrigem) || (PixelNaOrigemY < 0))
+                            {
+                                dataPtrDestino[0] = 0;
+                                dataPtrDestino[1] = 0;
+                                dataPtrDestino[2] = 0;
+                            }
+                            else
+                            {
+                                //Endereçamento absoluto
+                                dataPtrAjuda = dataPtrOrigem + (PixelNaOrigemY * widthTotalDestino) + (PixelNaOrigemX * nChanDestino);
+                                //retrieve 3 colour components
+                                dataPtrDestino[0] = (byte)dataPtrAjuda[0];
+                                dataPtrDestino[1] = (byte)dataPtrAjuda[1];
+                                dataPtrDestino[2] = (byte)dataPtrAjuda[2];
+                            }
+
+                            //Endereçamento absoluto
+                            dataPtrDestino += nChanDestino;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrDestino += paddingDestino;
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Aplica Rotatação no centro da imagem
+        /// angle em radianos
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Rotation(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float angle)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = imgDestino.MIplImage;
+                byte* dataPtrDestino = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                MIplImage m2 = imgOrigem.MIplImage;
+                byte* dataPtrOrigem = (byte*)m2.ImageData.ToPointer(); // Pointer to the imagem origem
+
+                int widthDestino = imgDestino.Width;
+                int heightDestino = imgDestino.Height;
+                int widthOrigem = imgOrigem.Width;
+                int heightOrigem = imgOrigem.Height;
+                int nChanDestino = m1.NChannels; // number of channels - 3
+                int paddingDestino = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotalDestino = m1.WidthStep;
+                int pixelNoDestinoX, pixelNoDestinoY;
+
+                int PixelNaOrigemX;
+                int PixelNaOrigemY;
+
+                byte* dataPtrAjuda;
+
+                double halfWidthT = widthOrigem / 2.0;
+                double halfHeight = heightOrigem / 2.0;
+                double cosAngle = Math.Cos(angle);
+                double sinAngle = Math.Sin(angle);
+
+                if (nChanDestino == 3) // image in RGB
+                {
+                    for (pixelNoDestinoY = 0; pixelNoDestinoY < heightDestino; pixelNoDestinoY++)
+                    {
+                        for (pixelNoDestinoX = 0; pixelNoDestinoX < widthDestino; pixelNoDestinoX++)
+                        {
+                            PixelNaOrigemX = (int)Math.Round( (pixelNoDestinoX - halfWidthT)*cosAngle - (halfHeight - pixelNoDestinoY) * sinAngle + halfWidthT);
+                            PixelNaOrigemY = (int)Math.Round(halfHeight - (pixelNoDestinoX - halfWidthT) * sinAngle - (halfHeight - pixelNoDestinoY) * cosAngle );
+
+                            if ((PixelNaOrigemX < 0) || (PixelNaOrigemX >= widthOrigem) || (PixelNaOrigemY >= heightOrigem) || (PixelNaOrigemY < 0))
+                            {
+                                dataPtrDestino[0] = 0;
+                                dataPtrDestino[1] = 0;
+                                dataPtrDestino[2] = 0;
+                            }
+                            else
+                            {
+                                //Endereçamento absoluto
+                                dataPtrAjuda = dataPtrOrigem + (PixelNaOrigemY * widthTotalDestino) + (PixelNaOrigemX * nChanDestino);
+                                //retrieve 3 colour components
+                                dataPtrDestino[0] = (byte)dataPtrAjuda[0];
+                                dataPtrDestino[1] = (byte)dataPtrAjuda[1];
+                                dataPtrDestino[2] = (byte)dataPtrAjuda[2];
+                            }
+
+                            //Endereçamento absoluto
+                            dataPtrDestino += nChanDestino;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrDestino += paddingDestino;
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Aplica zoom
+        /// dx = [-10,10] / dy = [-10,10]
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Scale(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = imgDestino.MIplImage;
+                byte* dataPtrDestino = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                MIplImage m2 = imgOrigem.MIplImage;
+                byte* dataPtrOrigem = (byte*)m2.ImageData.ToPointer(); // Pointer to the imagem origem
+
+                int widthDestino = imgDestino.Width;
+                int heightDestino = imgDestino.Height;
+                int widthOrigem = imgOrigem.Width;
+                int heightOrigem = imgOrigem.Height;
+                int nChanDestino = m1.NChannels; // number of channels - 3
+                int paddingDestino = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotalDestino = m1.WidthStep;
+                int pixelNoDestinoX, pixelNoDestinoY;
+
+                int PixelNaOrigemX;
+                int PixelNaOrigemY;
+
+                byte* dataPtrAjuda;
+
+                double halfWidthT = widthOrigem / 2.0;
+                double halfHeight = heightOrigem / 2.0;
+
+                if (nChanDestino == 3) // image in RGB
+                {
+                    for (pixelNoDestinoY = 0; pixelNoDestinoY < heightDestino; pixelNoDestinoY++)
+                    {
+                        for (pixelNoDestinoX = 0; pixelNoDestinoX < widthDestino; pixelNoDestinoX++)
+                        {
+                            PixelNaOrigemX = 1; //FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI
+                            PixelNaOrigemY = 1; //FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI//FAZER AQUI
+
+                            if ((PixelNaOrigemX < 0) || (PixelNaOrigemX >= widthOrigem) || (PixelNaOrigemY >= heightOrigem) || (PixelNaOrigemY < 0))
+                            {
+                                dataPtrDestino[0] = 0;
+                                dataPtrDestino[1] = 0;
+                                dataPtrDestino[2] = 0;
+                            }
+                            else
+                            {
+                                //Endereçamento absoluto
+                                dataPtrAjuda = dataPtrOrigem + (PixelNaOrigemY * widthTotalDestino) + (PixelNaOrigemX * nChanDestino);
+                                //retrieve 3 colour components
+                                dataPtrDestino[0] = (byte)dataPtrAjuda[0];
+                                dataPtrDestino[1] = (byte)dataPtrAjuda[1];
+                                dataPtrDestino[2] = (byte)dataPtrAjuda[2];
+                            }
+
+                            //Endereçamento absoluto
+                            dataPtrDestino += nChanDestino;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrDestino += paddingDestino;
+                    }
+                }
+            }
+        }
     }
+
 }
