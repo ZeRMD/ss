@@ -380,6 +380,58 @@ namespace SS_OpenCV
 
             Cursor = Cursors.Default; // normal cursor
         }
+
+        private void zoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Scale Factor?");
+            form1.ShowDialog();
+            double scaleFactor = Convert.ToDouble(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((scaleFactor <= 0))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.Scale(img, img.Copy(), (float)scaleFactor);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void zoomWithMouseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Scale Factor?");
+            form1.ShowDialog();
+            double scaleFactor = Convert.ToDouble(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((scaleFactor <= 0))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.Scale(img, img.Copy(), (float)scaleFactor);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
     }
 
 

@@ -507,6 +507,8 @@ namespace SS_OpenCV
         /// <summary>
         /// Aplica zoom
         /// scaleFactor
+        /// center x
+        /// center y
         /// </summary>
         /// <param name="img">Image</param>
         public static void Scale_point_xy(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
@@ -537,8 +539,8 @@ namespace SS_OpenCV
                 double halfWidthT = widthOrigem / 2.0;
                 double halfHeight = heightOrigem / 2.0;
 
-                double scalePlacementX = widthOrigem / (2.0 * scaleFactor);
-                double scalePlacementY = heightOrigem / (2.0 * scaleFactor);
+                double scalePlacementX = (widthOrigem / 2 ) / scaleFactor;
+                double scalePlacementY = (heightOrigem / 2 ) / scaleFactor;
 
                 if (nChanDestino == 3) // image in RGB
                 {
