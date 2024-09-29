@@ -14,6 +14,7 @@ using System.Runtime.Remoting.Channels;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices.ComTypes;
+using Emgu.CV.CvEnum;
 
 namespace SS_OpenCV
 {
@@ -468,9 +469,6 @@ namespace SS_OpenCV
 
                 byte* dataPtrAjuda;
 
-                double halfWidthT = widthOrigem / 2.0;
-                double halfHeight = heightOrigem / 2.0;
-
                 if (nChanDestino == 3) // image in RGB
                 {
                     for (pixelNoDestinoY = 0; pixelNoDestinoY < heightDestino; pixelNoDestinoY++)
@@ -513,7 +511,72 @@ namespace SS_OpenCV
         /// <param name="img">Image</param>
         public static void Scale_point_xy(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
         {
+            unsafe
+            {
 
+                MIplImage m1 = imgDestino.MIplImage;
+                byte* dataPtrDestino = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                MIplImage m2 = imgOrigem.MIplImage;
+                byte* dataPtrOrigem = (byte*)m2.ImageData.ToPointer(); // Pointer to the imagem origem
+
+                int widthDestino = imgDestino.Width;
+                int heightDestino = imgDestino.Height;
+                int widthOrigem = imgOrigem.Width;
+                int heightOrigem = imgOrigem.Height;
+                int nChanDestino = m1.NChannels; // number of channels - 3
+                int paddingDestino = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotalDestino = m1.WidthStep;
+                int pixelNoDestinoX, pixelNoDestinoY;
+
+                int PixelNaOrigemX;
+                int PixelNaOrigemY;
+
+                byte* dataPtrAjuda;
+
+                double halfWidthT = widthOrigem / 2.0;
+                double halfHeight = heightOrigem / 2.0;
+
+                double scalePlacementX = widthOrigem / (2.0 * scaleFactor);
+                double scalePlacementY = heightOrigem / (2.0 * scaleFactor);
+
+                if (nChanDestino == 3) // image in RGB
+                {
+                    for (pixelNoDestinoY = 0; pixelNoDestinoY < heightDestino; pixelNoDestinoY++)
+                    {
+                        for (pixelNoDestinoX = 0; pixelNoDestinoX < widthDestino; pixelNoDestinoX++)
+                        {
+                            PixelNaOrigemX = (int)Math.Round((pixelNoDestinoX / scaleFactor) - scalePlacementX + centerX);
+                            PixelNaOrigemY = (int)Math.Round((pixelNoDestinoY / scaleFactor) - scalePlacementY + centerY);
+
+                            // Fórmula
+                            //PixelNaOrigemX = (int)Math.Round((pixelNoDestinoX / scaleFactor) - (widthOrigem / (2.0 * scaleFactor) ) + centerX);
+                            //PixelNaOrigemY = (int)Math.Round((pixelNoDestinoY / scaleFactor) - (heightOrigem / (2.0 * scaleFactor) ) + centerY);
+
+                            if ((PixelNaOrigemX < 0) || (PixelNaOrigemX >= widthOrigem) || (PixelNaOrigemY >= heightOrigem) || (PixelNaOrigemY < 0))
+                            {
+                                dataPtrDestino[0] = 0;
+                                dataPtrDestino[1] = 0;
+                                dataPtrDestino[2] = 0;
+                            }
+                            else
+                            {
+                                //Endereçamento absoluto
+                                dataPtrAjuda = dataPtrOrigem + (PixelNaOrigemY * widthTotalDestino) + (PixelNaOrigemX * nChanDestino);
+                                //retrieve 3 colour components
+                                dataPtrDestino[0] = (byte)dataPtrAjuda[0];
+                                dataPtrDestino[1] = (byte)dataPtrAjuda[1];
+                                dataPtrDestino[2] = (byte)dataPtrAjuda[2];
+                            }
+
+                            //Endereçamento absoluto
+                            dataPtrDestino += nChanDestino;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrDestino += paddingDestino;
+                    }
+                }
+            }
         }
 
     }
