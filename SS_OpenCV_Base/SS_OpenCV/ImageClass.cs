@@ -581,6 +581,326 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Aplica zoom
+        /// scaleFactor
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Mean(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = imgDest.MIplImage;
+                byte* dataPtrDestino = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+                byte* dataPtrDestino1 = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                MIplImage m2 = imgOrig.MIplImage;
+                byte* dataPtrOrigem = (byte*)m2.ImageData.ToPointer(); // Pointer to the imagem origem
+
+                int widthDestino = imgDest.Width;
+                int heightDestino = imgDest.Height;
+                int widthOrigem = imgOrig.Width;
+                int heightOrigem = imgOrig.Height;
+                int nChanDestino = m1.NChannels; // number of channels - 3
+                int paddingDestino = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotalDestino = m1.WidthStep;
+
+                int PixelNoDestinoX;
+                int PixelNoDestinoY;
+
+                byte* dataPtrAjuda;
+
+                int pixelBorda;
+
+                int grossuraBorda = 1; // Por ser 3x3
+                // LOOP NO Y
+                int loopCoreXLim = widthDestino - 2;
+                // LOOP NO X
+                int loopCoreYLim = heightDestino - 2;
+
+                int channel;
+
+                double[] somaChannels = new double[3];
+
+                //Border
+                
+                //Borda de cima
+                dataPtrAjuda = dataPtrOrigem + (grossuraBorda * nChanDestino);
+                dataPtrDestino1 = dataPtrDestino + (grossuraBorda * nChanDestino);
+                for (pixelBorda = 0; pixelBorda < loopCoreXLim; pixelBorda++)
+                {
+                    
+                    for (channel = 0; channel < 3; channel++)
+                    {
+                        //Reset
+                        somaChannels[channel] = 0;
+
+                        // Ele próprio
+                        somaChannels[channel] += 2 * dataPtrAjuda[channel];
+                        //Esquerda direita
+                        somaChannels[channel] += 2 * (dataPtrAjuda + nChanDestino)[channel];
+                        somaChannels[channel] += 2 * (dataPtrAjuda - nChanDestino)[channel];
+                        // Linha de baixo
+                        somaChannels[channel] += (dataPtrAjuda + widthTotalDestino - nChanDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda + widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda + widthTotalDestino + nChanDestino)[channel];
+
+                    }
+                    
+                    dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                    dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                    dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+
+                    dataPtrDestino1 += nChanDestino;
+                    dataPtrAjuda += nChanDestino;
+                }
+                
+                //Borda de baixo
+                dataPtrAjuda = dataPtrOrigem + (grossuraBorda * nChanDestino) + ((heightDestino - 1)  * widthTotalDestino);
+                dataPtrDestino1 = dataPtrDestino + (grossuraBorda * nChanDestino) + ((heightDestino - 1) * widthTotalDestino);
+                for (pixelBorda = 0; pixelBorda < loopCoreXLim; pixelBorda++)
+                {
+
+                    for (channel = 0; channel < 3; channel++)
+                    {
+                        //Reset
+                        somaChannels[channel] = 0;
+
+                        // Ele próprio
+                        somaChannels[channel] += 2 * dataPtrAjuda[channel];
+                        //Esquerda direita
+                        somaChannels[channel] += 2 * (dataPtrAjuda + nChanDestino)[channel];
+                        somaChannels[channel] += 2 * (dataPtrAjuda - nChanDestino)[channel];
+                        // Linha de cima
+                        somaChannels[channel] += (dataPtrAjuda - widthTotalDestino - nChanDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda - widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda - widthTotalDestino + nChanDestino)[channel];
+
+                    }
+
+                    dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                    dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                    dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+
+                    dataPtrDestino1 += nChanDestino;
+                    dataPtrAjuda += nChanDestino;
+                }
+                
+                //Borda da esquerda
+                dataPtrAjuda = dataPtrOrigem + (grossuraBorda * widthTotalDestino);
+                dataPtrDestino1 = dataPtrDestino + (grossuraBorda * widthTotalDestino);
+                for (pixelBorda = 0; pixelBorda < loopCoreYLim + 1; pixelBorda++)
+                {
+
+                    for (channel = 0; channel < 3; channel++)
+                    {
+                        // Reset
+                        somaChannels[channel] = 0;
+
+                        // Ele próprio
+                        somaChannels[channel] += 2 * dataPtrAjuda[channel];
+                        // Esquerda direita
+                        somaChannels[channel] += (dataPtrAjuda + nChanDestino)[channel];
+                        // Linha de cima
+                        somaChannels[channel] += 2 *(dataPtrAjuda - widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda - widthTotalDestino + nChanDestino)[channel];
+                        // Linha de baixo
+                        somaChannels[channel] += 2 *(dataPtrAjuda + widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda + widthTotalDestino + nChanDestino)[channel];
+
+                    }
+
+                    dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                    dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                    dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+
+                    dataPtrDestino1 += widthTotalDestino;
+                    dataPtrAjuda += widthTotalDestino;
+                }
+
+                //Borda da direta
+                dataPtrAjuda = dataPtrOrigem + (grossuraBorda * widthTotalDestino) + (widthDestino - grossuraBorda);
+                dataPtrDestino1 = dataPtrDestino + (grossuraBorda * widthTotalDestino) + (widthDestino - grossuraBorda);
+                for (pixelBorda = 0; pixelBorda < loopCoreYLim + 1; pixelBorda++)
+                {
+
+                    for (channel = 0; channel < 3; channel++)
+                    {
+                        //Reset
+                        somaChannels[channel] = 0;
+
+                        // Ele próprio
+                        somaChannels[channel] += 2 * dataPtrAjuda[channel];
+                        //Esquerda direita
+                        somaChannels[channel] += (dataPtrAjuda - nChanDestino)[channel];
+                        // Linha de cima
+                        somaChannels[channel] += 2 * (dataPtrAjuda - widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda - widthTotalDestino - nChanDestino)[channel];
+                        // Linha de baixo
+                        somaChannels[channel] += 2 * (dataPtrAjuda + widthTotalDestino)[channel];
+                        somaChannels[channel] += (dataPtrAjuda + widthTotalDestino - nChanDestino)[channel];
+
+                    }
+
+                    dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                    dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                    dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+                    
+                    dataPtrDestino1[0] = (byte)0;
+                    dataPtrDestino1[1] = (byte)255;
+                    dataPtrDestino1[2] = (byte)0;
+
+                    dataPtrDestino1 += widthTotalDestino;
+                    dataPtrAjuda += widthTotalDestino;
+                }
+
+                //Borda as pontas
+                dataPtrAjuda = dataPtrOrigem + (nChanDestino * widthTotalDestino) + (widthDestino - grossuraBorda);
+                dataPtrDestino1 = dataPtrDestino + (nChanDestino * widthTotalDestino) + (widthDestino - grossuraBorda);
+                
+                //Canto sup esquerdo
+                dataPtrAjuda = dataPtrOrigem;
+                dataPtrDestino1 = dataPtrDestino;
+
+                for (channel = 0; channel < 3; channel++)
+                {
+                    //Reset
+                    somaChannels[channel] = 0;
+
+                    // Ele próprio
+                    somaChannels[channel] += 4 * dataPtrAjuda[channel];
+                    //Esquerda direita
+                    somaChannels[channel] += 2 * (dataPtrAjuda + nChanDestino)[channel];
+                    // Linha de baixo
+                    somaChannels[channel] += 2 * (dataPtrAjuda + widthTotalDestino)[channel];
+                    somaChannels[channel] += (dataPtrAjuda + widthTotalDestino + nChanDestino)[channel];
+
+                }
+
+                dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+                
+                //Canto sup direito
+                dataPtrAjuda += widthDestino;
+                dataPtrDestino1 += widthDestino;
+
+                for (channel = 0; channel < 3; channel++)
+                {
+                    //Reset
+                    somaChannels[channel] = 0;
+
+                    // Ele próprio
+                    somaChannels[channel] += 4 * dataPtrAjuda[channel];
+                    //Esquerda direita
+                    somaChannels[channel] += 2 * (dataPtrAjuda - nChanDestino)[channel];
+                    // Linha de baixo
+                    somaChannels[channel] += 2 * (dataPtrAjuda + widthTotalDestino)[channel];
+                    somaChannels[channel] += (dataPtrAjuda + widthTotalDestino - nChanDestino)[channel];
+                }
+
+                dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+                /*
+                //Canto inf direito
+                dataPtrAjuda += (heightDestino * widthTotalDestino);
+                dataPtrDestino1 += (heightDestino * widthTotalDestino);
+
+                for (channel = 0; channel < 3; channel++)
+                {
+                    //Reset
+                    somaChannels[channel] = 0;
+
+                    // Ele próprio
+                    somaChannels[channel] += 4 * dataPtrAjuda[channel];
+                    //Esquerda direita
+                    somaChannels[channel] += 2 * (dataPtrAjuda - nChanDestino)[channel];
+                    // Linha de cima
+                    somaChannels[channel] += 2 * (dataPtrAjuda - widthTotalDestino)[channel];
+                    somaChannels[channel] += (dataPtrAjuda - widthTotalDestino - nChanDestino)[channel];
+                }
+
+                dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+
+                //Canto inf esquerdo
+                dataPtrAjuda -= widthDestino;
+                dataPtrDestino1 -= widthDestino;
+
+                for (channel = 0; channel < 3; channel++)
+                {
+                    //Reset
+                    somaChannels[channel] = 0;
+
+                    // Ele próprio
+                    somaChannels[channel] += 4 * dataPtrAjuda[channel];
+                    //Esquerda direita
+                    somaChannels[channel] += 2 * (dataPtrAjuda + nChanDestino)[channel];
+                    // Linha de cima
+                    somaChannels[channel] += 2 * (dataPtrAjuda - widthTotalDestino)[channel];
+                    somaChannels[channel] += (dataPtrAjuda - widthTotalDestino + nChanDestino)[channel];
+                }
+
+                dataPtrDestino1[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                dataPtrDestino1[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                dataPtrDestino1[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+
+                */  
+
+                //Core
+                if (nChanDestino == 3) // image in RGB
+                {
+                    dataPtrAjuda = dataPtrOrigem + (grossuraBorda * widthTotalDestino) + (grossuraBorda * nChanDestino);
+                    dataPtrDestino += (grossuraBorda * widthTotalDestino) + (grossuraBorda * nChanDestino);
+
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < loopCoreYLim; PixelNoDestinoY++)
+                    {
+                        for (PixelNoDestinoX = 0; PixelNoDestinoX < loopCoreXLim; PixelNoDestinoX++)
+                        {
+                            
+                            for (channel = 0; channel < 3; channel++)
+                            {
+                                //Reset
+                                somaChannels[channel] = 0;
+
+                                // Ele próprio
+                                somaChannels[channel] += dataPtrAjuda[channel];
+                                //Esquerda direita
+                                somaChannels[channel] += (dataPtrAjuda + nChanDestino)[channel];
+                                somaChannels[channel] += (dataPtrAjuda - nChanDestino)[channel];
+                                // Linha de cima
+                                somaChannels[channel] += (dataPtrAjuda - widthTotalDestino - nChanDestino)[channel];
+                                somaChannels[channel] += (dataPtrAjuda - widthTotalDestino)[channel];
+                                somaChannels[channel] += (dataPtrAjuda - widthTotalDestino + nChanDestino)[channel];
+                                // Linha de baixo
+                                somaChannels[channel] += (dataPtrAjuda + widthTotalDestino - nChanDestino)[channel];
+                                somaChannels[channel] += (dataPtrAjuda + widthTotalDestino)[channel];
+                                somaChannels[channel] += (dataPtrAjuda + widthTotalDestino + nChanDestino)[channel];
+
+                            }
+                            //Calculate the negative (newChannelValue = 255 - oldChannelValue) and store in the image
+
+                            dataPtrDestino[0] = (byte)Math.Round(somaChannels[0] / 9.0);
+                            dataPtrDestino[1] = (byte)Math.Round(somaChannels[1] / 9.0);
+                            dataPtrDestino[2] = (byte)Math.Round(somaChannels[2] / 9.0);
+                            
+
+                            // advance the pointer to the next pixel
+                            dataPtrDestino += nChanDestino;
+                            dataPtrAjuda += nChanDestino;
+                        }
+
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrDestino += (paddingDestino + 2 * (grossuraBorda * nChanDestino));
+                        dataPtrAjuda += (paddingDestino + 2 * (grossuraBorda * nChanDestino));
+
+                    }
+                }
+            }
+        }
     }
 
 }
