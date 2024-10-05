@@ -33,7 +33,8 @@
               "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs [Design]",
               "RelativeToolTip": "SS_OpenCV\\MainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T13:49:27.403Z"
+              "WhenOpened": "2024-09-17T13:49:27.403Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -43,9 +44,10 @@
               "RelativeDocumentMoniker": "SS_OpenCV\\MainForm.cs",
               "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeToolTip": "SS_OpenCV\\MainForm.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAAwKUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADUBAAAAZ2ZmZmYqwD0BAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T13:49:59.281Z"
+              "WhenOpened": "2024-09-17T13:49:59.281Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -55,7 +57,7 @@
               "RelativeDocumentMoniker": "SS_OpenCV\\ImageClass.cs",
               "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\ImageClass.cs",
               "RelativeToolTip": "SS_OpenCV\\ImageClass.cs",
-              "ViewState": "AgIAALECAAAAy8zMzMwgwLMCAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAPUDAAAAAAAAAAAAAAgEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T13:57:31.638Z",
               "EditorCaption": ""
