@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
 using Emgu.CV;
@@ -431,6 +432,17 @@ namespace SS_OpenCV
             ImageViewer.Refresh(); // refresh image on the screen
 
             Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void nonUniformToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            float[,] matrixUI = new float[3, 3];
+
+            FilterForm ff = new FilterForm();
+            if(ff.ShowDialog() == DialogResult.OK)
+            {
+                matrixUI = ff.matrix;
+            }
         }
     }
 

@@ -7,12 +7,24 @@
       "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\imageclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\ss\\SS_OpenCV_Base\\ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\ss\\ss_opencv_base\\ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\ss\\ss_opencv_base\\ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\ss\\SS_OpenCV_Base\\ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\ss\\SS_OpenCV_Base\\ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\ss\\ss_opencv_base\\ss_opencv\\filterform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +34,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FilterForm.cs [Design]",
+              "DocumentMoniker": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.cs",
+              "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs [Design]",
+              "RelativeToolTip": "SS_OpenCV\\FilterForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T13:28:21.171Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "FilterForm.cs",
+              "DocumentMoniker": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.cs",
+              "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
+              "RelativeToolTip": "SS_OpenCV\\FilterForm.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwBIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T13:29:26.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeDocumentMoniker": "SS_OpenCV\\MainForm.cs",
@@ -38,13 +75,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "MainForm.cs",
               "DocumentMoniker": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeDocumentMoniker": "SS_OpenCV\\MainForm.cs",
               "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeToolTip": "SS_OpenCV\\MainForm.cs",
-              "ViewState": "AgIAADUBAAAAZ2ZmZmYqwD0BAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAJoBAAAAMjMzMzMLwLcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T13:49:59.281Z",
               "EditorCaption": ""
@@ -57,9 +94,22 @@
               "RelativeDocumentMoniker": "SS_OpenCV\\ImageClass.cs",
               "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\ImageClass.cs",
               "RelativeToolTip": "SS_OpenCV\\ImageClass.cs",
-              "ViewState": "AgIAAC4DAAAAgGZmZmb2vzUEAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJMFAAAAcmZmZmYSwJgFAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T13:57:31.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FilterForm.Designer.cs",
+              "DocumentMoniker": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.Designer.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.Designer.cs",
+              "ToolTip": "C:\\ss\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.Designer.cs",
+              "RelativeToolTip": "SS_OpenCV\\FilterForm.Designer.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAAAQwMYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T13:38:12.884Z",
               "EditorCaption": ""
             }
           ]

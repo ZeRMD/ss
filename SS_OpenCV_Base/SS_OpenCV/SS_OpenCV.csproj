@@ -85,6 +85,12 @@
     <Compile Include="AuthorsForm.Designer.cs">
       <DependentUpon>AuthorsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterForm.Designer.cs">
+      <DependentUpon>FilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageClass.cs" />
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
@@ -103,6 +109,9 @@
     <EmbeddedResource Include="AuthorsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AuthorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterForm.resx">
+      <DependentUpon>FilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>

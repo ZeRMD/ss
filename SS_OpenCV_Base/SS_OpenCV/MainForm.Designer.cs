@@ -54,6 +54,7 @@
             this.translationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomWithMouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nonUniformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.ImageViewer = new Emgu.CV.UI.ImageBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.zoomWithMouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -240,23 +240,30 @@
             // translationToolStripMenuItem
             // 
             this.translationToolStripMenuItem.Name = "translationToolStripMenuItem";
-            this.translationToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.translationToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.translationToolStripMenuItem.Text = "Translation";
             this.translationToolStripMenuItem.Click += new System.EventHandler(this.translationToolStripMenuItem_Click);
             // 
             // rotationToolStripMenuItem
             // 
             this.rotationToolStripMenuItem.Name = "rotationToolStripMenuItem";
-            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.rotationToolStripMenuItem.Text = "Rotation";
             this.rotationToolStripMenuItem.Click += new System.EventHandler(this.rotationToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
+            // 
+            // zoomWithMouseToolStripMenuItem
+            // 
+            this.zoomWithMouseToolStripMenuItem.Name = "zoomWithMouseToolStripMenuItem";
+            this.zoomWithMouseToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.zoomWithMouseToolStripMenuItem.Text = "Zoom with Mouse";
+            this.zoomWithMouseToolStripMenuItem.Click += new System.EventHandler(this.zoomWithMouseToolStripMenuItem_Click);
             // 
             // filtersToolStripMenuItem
             // 
@@ -270,14 +277,15 @@
             // mediaToolStripMenuItem
             // 
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
-            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.mediaToolStripMenuItem.Text = "Mean - solution A";
             // 
             // nonUniformToolStripMenuItem
             // 
             this.nonUniformToolStripMenuItem.Name = "nonUniformToolStripMenuItem";
-            this.nonUniformToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.nonUniformToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.nonUniformToolStripMenuItem.Text = "NonUniform";
+            this.nonUniformToolStripMenuItem.Click += new System.EventHandler(this.nonUniformToolStripMenuItem_Click);
             // 
             // autoZoomToolStripMenuItem
             // 
@@ -343,13 +351,6 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(60, 20);
             this.statusLabel.Text = "X :-   Y:-";
-            // 
-            // zoomWithMouseToolStripMenuItem
-            // 
-            this.zoomWithMouseToolStripMenuItem.Name = "zoomWithMouseToolStripMenuItem";
-            this.zoomWithMouseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.zoomWithMouseToolStripMenuItem.Text = "Zoom with Mouse";
-            this.zoomWithMouseToolStripMenuItem.Click += new System.EventHandler(this.zoomWithMouseToolStripMenuItem_Click);
             // 
             // MainForm
             // 
