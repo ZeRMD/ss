@@ -1123,11 +1123,17 @@ namespace SS_OpenCV
         /// scaleFactor
         /// </summary>
         /// <param name="img">Image</param>
-        void Mean_solutionC(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, int size)
+        public static void Mean_solutionC(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, int size)
         {
 
         }
 
+        /// <summary>
+        /// Non univoform
+        /// offset
+        /// matrixWeight
+        /// </summary>
+        /// <param name="img">Image</param>
         public static void NonUniform(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, float[,] matrix, float matrixWeight, float offset)
         {
             unsafe

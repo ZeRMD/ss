@@ -42,10 +42,10 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,6 +159,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Coeficients";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(45, 180);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Offset";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -172,7 +181,11 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Gaussiana"});
+            "Gaussiana",
+            "Realce de Contornos",
+            "Laplacian Hard",
+            "Linhas Verticais",
+            "Custom"});
             this.comboBox1.Location = new System.Drawing.Point(24, 58);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(199, 24);
@@ -187,15 +200,6 @@
             this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Filter";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 180);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Offset";
             // 
             // FilterForm
             // 

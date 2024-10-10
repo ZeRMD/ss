@@ -438,15 +438,33 @@ namespace SS_OpenCV
         {
             float[,] matrixUI = new float[3, 3];
 
+            float weightUI;
+            float offsetUI;
+
+            if (img == null) // verify if the image is already opened
+                return;
+
             FilterForm ff = new FilterForm();
+
             if(ff.ShowDialog() == DialogResult.OK)
             {
                 matrixUI = ff.matrix;
+                weightUI = ff.weight;
+                offsetUI = ff.offset;
+
+                Cursor = Cursors.WaitCursor; // clock cursor 
+
+                //copy Undo Image
+                imgUndo = img.Copy();
+
+                ImageClass.NonUniform(img, img.Copy(), matrixUI, weightUI, offsetUI);
+
+                ImageViewer.Image = img;
+                ImageViewer.Refresh(); // refresh image on the screen
+
+                Cursor = Cursors.Default; // normal cursors
             }
         }
     }
-
-
-
 
 }
