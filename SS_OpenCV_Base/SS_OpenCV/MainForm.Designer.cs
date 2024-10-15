@@ -65,6 +65,8 @@
             this.ImageViewer = new Emgu.CV.UI.ImageBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diferentiationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -269,7 +271,9 @@
             // 
             this.filtersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mediaToolStripMenuItem,
-            this.nonUniformToolStripMenuItem});
+            this.nonUniformToolStripMenuItem,
+            this.sobelToolStripMenuItem,
+            this.diferentiationToolStripMenuItem});
             this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
             this.filtersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.filtersToolStripMenuItem.Text = "Filters";
@@ -352,6 +356,20 @@
             this.statusLabel.Size = new System.Drawing.Size(60, 20);
             this.statusLabel.Text = "X :-   Y:-";
             // 
+            // sobelToolStripMenuItem
+            // 
+            this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sobelToolStripMenuItem.Text = "Sobel";
+            this.sobelToolStripMenuItem.Click += new System.EventHandler(this.sobelToolStripMenuItem_Click);
+            // 
+            // diferentiationToolStripMenuItem
+            // 
+            this.diferentiationToolStripMenuItem.Name = "diferentiationToolStripMenuItem";
+            this.diferentiationToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.diferentiationToolStripMenuItem.Text = "Diferentiation";
+            this.diferentiationToolStripMenuItem.Click += new System.EventHandler(this.diferentiationToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -414,6 +432,8 @@
         private System.Windows.Forms.ToolStripMenuItem blueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brightContrastToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoomWithMouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diferentiationToolStripMenuItem;
     }
 }
 
