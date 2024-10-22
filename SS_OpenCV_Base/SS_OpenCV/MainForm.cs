@@ -501,6 +501,17 @@ namespace SS_OpenCV
 
             Cursor = Cursors.Default; // normal cursor
         }
+
+        private void histogramsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            HistogramForm HF = new HistogramForm(ImageClass.Histogram_Gray(img), ImageClass.Histogram_RGB(img), ImageClass.Histogram_All(img));
+
+            if (HF.ShowDialog() != DialogResult.Cancel)
+                return;
+        }
     }
 
 }

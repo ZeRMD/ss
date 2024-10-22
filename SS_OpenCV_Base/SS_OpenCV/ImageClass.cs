@@ -17,6 +17,8 @@ using System.Runtime.InteropServices.ComTypes;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Flann;
 using System.Reflection;
+using System.ComponentModel;
+using Emgu.CV.Ocl;
 
 namespace SS_OpenCV
 {
@@ -2260,6 +2262,170 @@ namespace SS_OpenCV
 
             }
         }
+
+        /// <summary>
+        ///  Mediana com OpenCV
+        ///  - Recebe a imagem a alterar e uma cópia da imagem
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Median(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            CvInvoke.MedianBlur(imgOrig, imgDest, 3);
+        }
+
+        /// <summary>
+        ///  Mediana com OpenCV
+        ///  - Recebe a imagem a alterar e uma cópia da imagem
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static void Median3D(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            
+        }
+
+        /// <summary>
+        ///  Histograma em cinzentos
+        /// </summary>
+        /// <param name="img">Image</param>
+        public static int[] Histogram_Gray(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtrImagem = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int pixelX;
+                int pixelY;
+
+                int gray;
+
+                int[] histogramData = new int[256];
+
+                if (nChan == 3) // image in RGB
+                {
+                    for (pixelY = 0; pixelY < height; pixelY++)
+                    {
+                        for (pixelX = 0; pixelX < width; pixelX++)
+                        {
+
+                            // convert to gray
+                            gray = (int)Math.Round(((dataPtrImagem[0] + dataPtrImagem[1] + dataPtrImagem[2]) / 3.0));
+
+                            histogramData[gray] += 1;
+
+                            //Endereçamento absoluto
+                            dataPtrImagem += nChan;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrImagem += padding;
+                    }
+                }
+                return histogramData;
+            }
+        }
+
+        /// <summary>
+        /// Histograma de cinzentos
+        /// </summary>
+        /// - Recebe a imagem a analisar
+        /// - Devolve o histograma das 3 componentes B + G + R numa matrix[3, 256]
+        /// <param name="img">Image</param>
+        public static int[,] Histogram_RGB(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtrImagem = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int pixelX;
+                int pixelY;
+
+                int[,] histogramData = new int[3,256];
+
+                if (nChan == 3) // image in RGB
+                {
+                    for (pixelY = 0; pixelY < height; pixelY++)
+                    {
+                        for (pixelX = 0; pixelX < width; pixelX++)
+                        {
+
+                            histogramData[0,dataPtrImagem[0]] += 1;
+                            histogramData[1,dataPtrImagem[1]] += 1;
+                            histogramData[2,dataPtrImagem[2]] += 1;
+
+                            //Endereçamento absoluto
+                            dataPtrImagem += nChan;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrImagem += padding;
+                    }
+                }
+                return histogramData;
+            }
+        }
+
+        /// <summary>
+        /// Histograma de cinzentos
+        /// </summary>
+        /// - Recebe a imagem a analisar
+        /// - Devolve o histograma das 4 componentes GRAY + B + G + R numa matrix[4, 256]
+        /// <param name="img">Image</param>
+        public static int[,] Histogram_All(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtrImagem = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int pixelX;
+                int pixelY;
+
+                int[,] histogramData = new int[4, 256];
+
+                if (nChan == 3) // image in RGB
+                {
+                    for (pixelY = 0; pixelY < height; pixelY++)
+                    {
+                        for (pixelX = 0; pixelX < width; pixelX++)
+                        {
+
+                            histogramData[0, (int)Math.Round(((dataPtrImagem[0] + dataPtrImagem[1] + dataPtrImagem[2]) / 3.0))] += 1; // Gray
+                            histogramData[1, dataPtrImagem[0]] += 1; // Blue
+                            histogramData[2, dataPtrImagem[1]] += 1; // Green
+                            histogramData[3, dataPtrImagem[2]] += 1; // Red
+
+                            //Endereçamento absoluto
+                            dataPtrImagem += nChan;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtrImagem += padding;
+                    }
+                }
+                return histogramData;
+            }
+        }
+
     }
 
 
