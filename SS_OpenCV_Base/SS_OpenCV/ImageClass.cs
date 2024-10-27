@@ -2427,7 +2427,4 @@ namespace SS_OpenCV
         }
 
     }
-
-
-
 }
