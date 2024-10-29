@@ -512,6 +512,32 @@ namespace SS_OpenCV
             if (HF.ShowDialog() != DialogResult.Cancel)
                 return;
         }
+
+        private void binarizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            InputBox form1 = new InputBox("Threshold?");
+            form1.ShowDialog();
+            int threshold = Convert.ToInt32(form1.ValueTextBox.Text);
+            form1.Hide();
+
+            if ((threshold < 0) && (threshold > 255))
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            ImageClass.ConvertToBW(img, threshold);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
     }
 
 }

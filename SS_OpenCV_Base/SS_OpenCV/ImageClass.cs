@@ -2426,5 +2426,123 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Histograma de cinzentos
+        /// </summary>
+        /// - recebe a imagem a alterar e o valor de threshold
+        /// - Binariza a imagem através da comparação com o threshold
+        /// <param name="img">Image</param>
+        public static void ConvertToBW(Emgu.CV.Image<Bgr, byte> img, int threshold)
+        {
+            unsafe
+            {
+                // direct access to the image memory(sequencial)
+                // direcion top left -> bottom right
+
+                MIplImage m = img.MIplImage;
+                byte* dataPtr = (byte*)m.ImageData.ToPointer(); // Pointer to the image
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m.NChannels; // number of channels - 3
+                int padding = m.WidthStep - m.NChannels * m.Width; // alinhament bytes (padding)
+                int x, y;
+
+                if (nChan == 3) // image in RGB
+                {
+                    for (y = 0; y < height; y++)
+                    {
+                        for (x = 0; x < width; x++)
+                        {
+                            if (Math.Round((dataPtr[0] + dataPtr[1] + dataPtr[2]) / 3.0) > threshold)
+                            {
+                                dataPtr[0] = 255;
+                                dataPtr[1] = 255;
+                                dataPtr[2] = 255;
+                            } else
+                            {
+                                dataPtr[0] = 0;
+                                dataPtr[1] = 0;
+                                dataPtr[2] = 0;
+                            }
+
+                            // advance the pointer to the next pixel
+                            dataPtr += nChan;
+                        }
+
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtr += padding;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Histograma de cinzentos
+        /// </summary>
+        /// - recebe a imagem a alterar e o valor de threshold
+        /// - Binariza a imagem através da comparação com o threshold
+        /// <param name="img">Image</param>
+        public static void ConvertToBW_Otsu(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+                // direct access to the image memory(sequencial)
+                // direcion top left -> bottom right
+
+                MIplImage m = img.MIplImage;
+                byte* dataPtr = (byte*)m.ImageData.ToPointer(); // Pointer to the image
+
+                int width = img.Width;
+                int height = img.Height;
+
+                float tamanhoImagem = width * height;
+
+                int threshold = 0;
+                double variancia;
+
+                int[] histogramData = new int[256];
+
+                histogramData = Histogram_Gray(img);
+
+                double q1 = 0;
+                double q2 = 0;
+
+                for (int x = 0; x < 256; x++)
+                {
+                    q2 += histogramData[x]/tamanhoImagem;
+                }
+                
+                double u1SemDivisao = 0;
+                double u2SemDivisao = 0;
+
+                for (int y = 0; y < 256; y++)
+                {
+                    u2SemDivisao += (histogramData[y]/tamanhoImagem) * y;
+                }
+
+                double variancianova;
+
+                variancia = 0;
+
+                for (int histLoop = 0; histLoop < 254; histLoop++) {
+
+                    u1SemDivisao += (histogramData[histLoop] / tamanhoImagem) * histLoop;
+                    u2SemDivisao -= (histogramData[histLoop] / tamanhoImagem) * histLoop;
+                    q1 += histogramData[histLoop] / tamanhoImagem;
+                    q2 -= histogramData[histLoop] / tamanhoImagem;
+
+                    variancianova = q1 * q2 * Math.Pow((u1SemDivisao / q1) - (u2SemDivisao / q2), 2);
+
+                    if (variancia < variancianova)
+                    {
+                        variancia = variancianova;
+                        threshold = histLoop;
+                    }
+                }
+
+                ConvertToBW(img, threshold);
+            }
+        }
     }
 }
