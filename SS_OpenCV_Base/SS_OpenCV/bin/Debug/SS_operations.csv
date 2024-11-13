@@ -1,3 +1,4 @@
+40;SinalReader;Sinal Reader;public static void SinalReader(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, int level, out Results sinalResult)
 1;Negative;Negative;public static void Negative(Image<Bgr,byte> img)
 2;BrightContrast;Brightness & Contrast;public static void BrightContrast(Image<Bgr,byte> img,int bright,double contrast)
 3;RedChannel;Red Channel;public static void RedChannel(Image<Bgr,byte> img)

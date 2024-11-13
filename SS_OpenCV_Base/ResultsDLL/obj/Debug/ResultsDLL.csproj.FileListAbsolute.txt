@@ -1,0 +1,6 @@
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\obj\Debug\ResultsDLL.csproj.AssemblyReference.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\obj\Debug\ResultsDLL.csproj.CoreCompileInputs.cache
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\bin\Debug\ResultsDLL.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\bin\Debug\ResultsDLL.pdb
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\obj\Debug\ResultsDLL.dll
+C:\Users\atbdm\OneDrive - FCT NOVA\Aulas\SS\SS 2024-2025\praticas\Projeto\SS_OpenCV_Base\ResultsDLL\obj\Debug\ResultsDLL.pdb

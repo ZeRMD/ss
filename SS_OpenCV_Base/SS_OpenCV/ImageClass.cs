@@ -20,6 +20,8 @@ using System.Reflection;
 using System.ComponentModel;
 using Emgu.CV.Ocl;
 
+using ResultsDLL;
+
 namespace SS_OpenCV
 {
     class ImageClass
@@ -2542,6 +2544,191 @@ namespace SS_OpenCV
                 }
 
                 ConvertToBW(img, threshold);
+            }
+        }
+
+        public static void ConectedComponentsAlgIter(Emgu.CV.Image<Bgr, byte> imgOri, Emgu.CV.Image<Bgr, byte> imgDest)
+        {
+            unsafe
+            {
+                unsafe
+                {
+                    ConvertToBW_Otsu(imgOri);
+                    MIplImage mori = imgOri.MIplImage;
+                    MIplImage mdest = imgDest.MIplImage;
+                    
+                    byte* dataPtrOrigem = (byte*)mori.ImageData.ToPointer(); // Pointer to the image origem
+                    byte* dataPtrDestino = (byte*)mdest.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                    int width = imgOri.Width;
+                    int height = imgOri.Height;
+                    int nChan = mori.NChannels;
+                    int padding = mori.WidthStep - mori.NChannels * mori.Width; // alinhament bytes (padding)
+                    int widthTotal = mori.WidthStep;
+                    
+                    int PixelNoDestinoX, PixelNoDestinoY;
+
+                    int pixelBorda;
+
+                    int grossuraBorda = 1; // Por ser 3 x 3
+                    int index;
+                    int indexMatrixInt;
+
+                    // LOOP NO Y
+                    int loopCoreXLim = width - 1 - grossuraBorda;
+                    int loopCoreYLim = height - 1 - grossuraBorda;
+                    int loopBorderXLim;
+                    int loopBorderYLim;
+
+                    //Border
+                    loopBorderXLim = loopCoreXLim + grossuraBorda*2;
+                    loopBorderYLim = loopCoreYLim + grossuraBorda*2;
+
+                    // Ligar Componentes
+                    int pixelEsquerda = 0;
+                    int pixelCima = 0;
+                    int pixel = 0;
+
+                    int valorATomar = 0;
+                    int valor = 0;
+
+                    int[] matrizIntermedia = new int[width*height];
+
+                    // CvInvoke.CopyMakeBorder(imgOri.Copy(), imgOri, 3, 3, 3, 3, 0);
+
+                    // Canto Superior Esquerdo
+                    index = 0;
+                    indexMatrixInt = 0;
+
+                    if (dataPtrOrigem[index] == 0)
+                    {
+                        valorATomar = ++valor;
+                        dataPtrDestino[index] = (byte)valorATomar;
+                        dataPtrDestino[index + 1] = (byte)valorATomar;
+                        dataPtrDestino[index + 2] = (byte)valorATomar;
+                    }
+                    else
+                    {
+                        dataPtrDestino[index] = (byte)0;
+                        dataPtrDestino[index + 1] = (byte)0;
+                        dataPtrDestino[index + 2] = (byte)0;
+                    }
+
+                    //Borda de Cima
+                    index = (nChan * grossuraBorda) + ((grossuraBorda - 1) * widthTotal);
+                    for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderXLim; pixelBorda++)
+                    {
+                        if (dataPtrOrigem[index] == 0)
+                        {
+                            pixelEsquerda = dataPtrDestino[index - nChan];
+
+                            if (pixelEsquerda != 0)
+                            {
+                                valorATomar = pixelEsquerda;
+                            }
+                            else
+                            {
+                                valorATomar = ++valor;
+                            }
+                            dataPtrDestino[index] = (byte)valorATomar;
+                            dataPtrDestino[index + 1] = (byte)valorATomar;
+                            dataPtrDestino[index + 2] = (byte)valorATomar;
+                        }
+                        else
+                        {
+                            dataPtrDestino[index] = (byte)0;
+                            dataPtrDestino[index + 1] = (byte)0;
+                            dataPtrDestino[index + 2] = (byte)0;
+                        }
+
+                        index += nChan;
+                    }
+
+                    //Borda da esquerda
+                    index = (nChan * (grossuraBorda - 1)) + (grossuraBorda * widthTotal);
+                    for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderYLim; pixelBorda++)
+                    {
+                        if (dataPtrOrigem[index] == 0)
+                        {
+                            pixelCima = dataPtrDestino[index - widthTotal];
+
+                            if (pixelCima != 0)
+                            {
+                                valorATomar = pixelCima;
+                            }
+                            else
+                            {
+                                valorATomar = ++valor;
+                            }
+                            dataPtrDestino[index] = (byte)valorATomar;
+                            dataPtrDestino[index + 1] = (byte)valorATomar;
+                            dataPtrDestino[index + 2] = (byte)valorATomar;
+                        }
+                        else
+                        {
+                            dataPtrDestino[index] = (byte)0;
+                            dataPtrDestino[index + 1] = (byte)0;
+                            dataPtrDestino[index + 2] = (byte)0;
+                        }
+
+                        index += widthTotal;
+                    }
+
+                    //Core
+                    if (nChan == 3) // image in RGB
+                    {
+                        index = (grossuraBorda * widthTotal) + (grossuraBorda * nChan);
+
+                        for (PixelNoDestinoY = 0; PixelNoDestinoY < loopCoreYLim; PixelNoDestinoY++)
+                        {
+                            for (PixelNoDestinoX = 0; PixelNoDestinoX < loopCoreXLim; PixelNoDestinoX++)
+                            {
+                                if (dataPtrOrigem[index] == 0)
+                                {
+                                    
+                                    pixelEsquerda = dataPtrDestino[index - nChan];
+
+                                    pixelCima = dataPtrDestino[index - widthTotal];
+
+                                    if (pixelEsquerda != 0)
+                                    {
+                                        if (pixelCima != 0)
+                                        {
+                                            valorATomar = Math.Min(pixelEsquerda, pixelCima);
+                                        } else valorATomar = pixelEsquerda;
+                                    }
+                                    else
+                                    {
+                                        if(pixelCima != 0)
+                                        {
+                                            valorATomar = pixelCima;
+                                        } else
+                                        {
+                                            valorATomar = ++valor;
+                                        }
+                                    }
+                                    dataPtrDestino[index] = (byte)valorATomar;
+                                    dataPtrDestino[index + 1] = (byte)valorATomar;
+                                    dataPtrDestino[index + 2] = (byte)valorATomar;
+                                }
+                                else
+                                {
+                                    dataPtrDestino[index] = (byte)0;
+                                    dataPtrDestino[index + 1] = (byte)0;
+                                    dataPtrDestino[index + 2] = (byte)0;
+                                }
+
+                                // advance the pointer to the next pixel
+                                index += nChan;
+                            }
+                            //at the end of the line advance the pointer by the aligment bytes (padding)
+                            index += (padding + 2 * (grossuraBorda * nChan));
+                        }
+                    }
+
+                    // Aqui temos meio 
+                    
+                }
             }
         }
     }

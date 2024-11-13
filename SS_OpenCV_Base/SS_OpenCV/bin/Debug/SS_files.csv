@@ -1,5 +1,26 @@
 ﻿../../../imagens/;;;
-file;is_Fruit;Level;Ouput
+file;is_Sinal;Level;Info
+nivel 0 - 50.png;TRUE;0;(sinal_limite_velocidade${X=11,Y=9,Width=231,Height=242}${(5%{X=56,Y=87,Width=59,Height=91})&(0%{X=132,Y=84,Width=70,Height=91})&})|
+nivel 0 - 70(1).png;TRUE;0;(sinal_limite_velocidade${X=14,Y=0,Width=206,Height=225}${(7%{X=56,Y=74,Width=52,Height=81})&(0%{X=125,Y=73,Width=62,Height=83})&})|
+nivel 0 - 80.png;TRUE;0;(sinal_limite_velocidade${X=9,Y=10,Width=170,Height=192}${(0%{X=99,Y=71,Width=52,Height=74})&(8%{X=39,Y=67,Width=49,Height=75})&})|
+nivel 1 - 60.png;TRUE;1;(sinal_limite_velocidade${X=1179,Y=183,Width=215,Height=267}${(0%{X=1293,Y=269,Width=66,Height=105})&(6%{X=1219,Y=264,Width=62,Height=104})&})|
+nivel 1 - 70(2).jpg;TRUE;1;(sinal_limite_velocidade${X=1079,Y=233,Width=206,Height=223}${(7%{X=1121,Y=305,Width=52,Height=81})&(0%{X=1190,Y=304,Width=62,Height=82})&})|
+nivel 1 - 70(4).png;TRUE;1;(sinal_limite_velocidade${X=1251,Y=233,Width=176,Height=187}${(0%{X=1344,Y=295,Width=53,Height=72})&(7%{X=1291,Y=293,Width=45,Height=70})&})|
+nivel 1 - 80.png;TRUE;1;(sinal_limite_velocidade${X=991,Y=169,Width=170,Height=192}${(0%{X=1081,Y=230,Width=52,Height=74})&(8%{X=1021,Y=226,Width=49,Height=75})&})|
+nivel 1 - 90.png;TRUE;1;(sinal_limite_velocidade${X=1330,Y=190,Width=278,Height=327}${(0%{X=1482,Y=294,Width=84,Height=124})&(9%{X=1381,Y=293,Width=75,Height=125})&})|
+nivel 1- 40.png;TRUE;1;(sinal_limite_velocidade${X=722,Y=149,Width=126,Height=151}${(0%{X=791,Y=199,Width=38,Height=56})&(4%{X=742,Y=198,Width=39,Height=55})&})|
+nivel 2 - 100.png;TRUE;2;(sinal_limite_velocidade${X=1405,Y=193,Width=221,Height=228}${(0%{X=1536,Y=277,Width=53,Height=66})&(0%{X=1478,Y=275,Width=52,Height=67})&(1%{X=1443,Y=275,Width=25,Height=65})&})|
+nivel 2 - 120.png;TRUE;2;(sinal_limite_velocidade${X=1217,Y=200,Width=226,Height=231}${(0%{X=1346,Y=286,Width=53,Height=66})&(2%{X=1292,Y=284,Width=48,Height=66})&(1%{X=1260,Y=284,Width=24,Height=64})&})|
+nivel 3 - tonelagem.png;TRUE;3;(sinal_proibicao${X=960,Y=147,Width=175,Height=183}$|
+nivel 3 - ultrapassar + 40.png;TRUE;3;(sinal_limite_velocidade${X=1208,Y=305,Width=157,Height=190}${(4%{X=1233,Y=368,Width=48,Height=68})&(0%{X=1298,Y=363,Width=45,Height=70})&}|(sinal_proibicao${X=1219,Y=89,Width=149,Height=192}$|
+nivel 3 - ultrapassar + 50.png;TRUE;3;(sinal_limite_velocidade${X=1236,Y=419,Width=231,Height=242}${(5%{X=1280,Y=497,Width=60,Height=91})&(0%{X=1357,Y=494,Width=70,Height=92})&}|(sinal_proibicao${X=1238,Y=147,Width=232,Height=244}$|
+nivel 4 - curva dir+ultrapassar.png;TRUE;4;(sinal_proibicao${X=1238,Y=421,Width=110,Height=116}$|(sinal_perigo${X=1231,Y=289,Width=128,Height=120}$|
+nivel 4 - curva-perigosa.png;TRUE;4;(sinal_perigo${X=1353,Y=339,Width=177,Height=162}$|
+nivel 4 - entroncamento.png;TRUE;4;(sinal_perigo${X=1171,Y=179,Width=274,Height=295}$|
+nivel 4 - passadeira (2).png;TRUE;4;(sinal_perigo${X=1129,Y=264,Width=169,Height=156}$|
+nivel 4 - prioridade + 50.png;TRUE;4;(sinal_perigo${X=1216,Y=351,Width=130,Height=140}$|(sinal_limite_velocidade${X=1217,Y=161,Width=135,Height=167}${(5%{X=1242,Y=215,Width=35,Height=61})&(0%{X=1290,Y=214,Width=39,Height=62})&}|
+nivel 4 - prioridade e proibido virar.png;TRUE;4;(sinal_perigo${X=913,Y=300,Width=107,Height=138}$|(sinal_proibicao${X=915,Y=127,Width=107,Height=157}$|
+nivel 4 - rotunda + 70.png;TRUE;4;(sinal_limite_velocidade${X=998,Y=329,Width=160,Height=185}${(0%{X=1084,Y=387,Width=47,Height=69})&(7%{X=1032,Y=386,Width=40,Height=68})&}|(sinal_perigo${X=1003,Y=140,Width=155,Height=161}$|
 Flying_lowres.jpg;FALSE;;
 Flying_lowres_crop.jpg;FALSE;;
 Fyling_lowres_noise.png;FALSE;;

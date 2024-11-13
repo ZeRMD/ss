@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SS_OpenCV", "SS_OpenCV\SS_OpenCV.csproj", "{CD855189-4EC3-4D94-8305-CE02B0E98ED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResultsDLL", "ResultsDLL\ResultsDLL.csproj", "{23BA0E5A-D914-410E-9A24-6F223595AAC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{CD855189-4EC3-4D94-8305-CE02B0E98ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD855189-4EC3-4D94-8305-CE02B0E98ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD855189-4EC3-4D94-8305-CE02B0E98ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23BA0E5A-D914-410E-9A24-6F223595AAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BA0E5A-D914-410E-9A24-6F223595AAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BA0E5A-D914-410E-9A24-6F223595AAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BA0E5A-D914-410E-9A24-6F223595AAC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB3BA03E-D632-4974-AD3A-98B1A46C347D}
 	EndGlobalSection
 EndGlobal

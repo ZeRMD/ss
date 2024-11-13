@@ -173,6 +173,12 @@
     <Content Include="Resources\logo_nova_short.ico" />
     <Content Include="Resources\logo_nova_short.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ResultsDLL\ResultsDLL.csproj">
+      <Project>{23ba0e5a-d914-410e-9a24-6f223595aac6}</Project>
+      <Name>ResultsDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

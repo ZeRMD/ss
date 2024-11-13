@@ -277,3 +277,5 @@ C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\SS_Eval.pdb
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.csproj.Up2Date
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.FilterForm.resources
 C:\ss\SS_OpenCV_Base\SS_OpenCV\obj\Debug\SS_OpenCV.HistogramForm.resources
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ResultsDLL.dll
+C:\ss\SS_OpenCV_Base\SS_OpenCV\bin\Debug\ResultsDLL.pdb
