@@ -2551,183 +2551,250 @@ namespace SS_OpenCV
         {
             unsafe
             {
-                unsafe
+                ConvertToBW_Otsu(imgOri);
+                MIplImage mori = imgOri.MIplImage;
+                MIplImage mdest = imgDest.MIplImage;
+
+                byte* dataPtrOrigem = (byte*)mori.ImageData.ToPointer(); // Pointer to the image origem
+                byte* dataPtrDestino = (byte*)mdest.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = imgOri.Width;
+                int height = imgOri.Height;
+                int nChan = mori.NChannels;
+                int padding = mori.WidthStep - mori.NChannels * mori.Width; // alinhament bytes (padding)
+                int widthTotal = mori.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                int pixelBorda;
+
+                int grossuraBorda = 1; // Por ser 3 x 3
+                int index;
+                int indexMatrixInt;
+
+                // LOOP NO Y
+                int loopCoreXLim = width - 1 - grossuraBorda;
+                int loopCoreYLim = height - 1 - grossuraBorda;
+                int loopBorderXLim;
+                int loopBorderYLim;
+
+                //Border
+                loopBorderXLim = loopCoreXLim + grossuraBorda * 2;
+                loopBorderYLim = loopCoreYLim + grossuraBorda * 2;
+
+                // Ligar Componentes
+                int pixelEsquerda = 0;
+                int pixelCima = 0;
+                int pixel = 0;
+
+                int valorATomar = 0;
+                int valor = 0;
+
+                int[] matrizIntermedia = new int[width * height];
+
+                // CvInvoke.CopyMakeBorder(imgOri.Copy(), imgOri, 3, 3, 3, 3, 0);
+
+                // Canto Superior Esquerdo
+                index = 0;
+                indexMatrixInt = 0;
+
+                if (dataPtrOrigem[index] == 0)
                 {
-                    ConvertToBW_Otsu(imgOri);
-                    MIplImage mori = imgOri.MIplImage;
-                    MIplImage mdest = imgDest.MIplImage;
-                    
-                    byte* dataPtrOrigem = (byte*)mori.ImageData.ToPointer(); // Pointer to the image origem
-                    byte* dataPtrDestino = (byte*)mdest.ImageData.ToPointer(); // Pointer to the imagem destino
+                    valorATomar = ++valor;
 
-                    int width = imgOri.Width;
-                    int height = imgOri.Height;
-                    int nChan = mori.NChannels;
-                    int padding = mori.WidthStep - mori.NChannels * mori.Width; // alinhament bytes (padding)
-                    int widthTotal = mori.WidthStep;
-                    
-                    int PixelNoDestinoX, PixelNoDestinoY;
+                    matrizIntermedia[indexMatrixInt] = valorATomar;
+                }
+                else
+                {
+                    matrizIntermedia[indexMatrixInt] = 0;
+                }
 
-                    int pixelBorda;
+                //Borda de Cima
+                index = (nChan * grossuraBorda) + ((grossuraBorda - 1) * widthTotal);
+                indexMatrixInt = grossuraBorda;
 
-                    int grossuraBorda = 1; // Por ser 3 x 3
-                    int index;
-                    int indexMatrixInt;
-
-                    // LOOP NO Y
-                    int loopCoreXLim = width - 1 - grossuraBorda;
-                    int loopCoreYLim = height - 1 - grossuraBorda;
-                    int loopBorderXLim;
-                    int loopBorderYLim;
-
-                    //Border
-                    loopBorderXLim = loopCoreXLim + grossuraBorda*2;
-                    loopBorderYLim = loopCoreYLim + grossuraBorda*2;
-
-                    // Ligar Componentes
-                    int pixelEsquerda = 0;
-                    int pixelCima = 0;
-                    int pixel = 0;
-
-                    int valorATomar = 0;
-                    int valor = 0;
-
-                    int[] matrizIntermedia = new int[width*height];
-
-                    // CvInvoke.CopyMakeBorder(imgOri.Copy(), imgOri, 3, 3, 3, 3, 0);
-
-                    // Canto Superior Esquerdo
-                    index = 0;
-                    indexMatrixInt = 0;
-
+                for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderXLim; pixelBorda++)
+                {
                     if (dataPtrOrigem[index] == 0)
                     {
-                        valorATomar = ++valor;
-                        dataPtrDestino[index] = (byte)valorATomar;
-                        dataPtrDestino[index + 1] = (byte)valorATomar;
-                        dataPtrDestino[index + 2] = (byte)valorATomar;
+                        pixelEsquerda = matrizIntermedia[indexMatrixInt - 1];
+
+                        if (pixelEsquerda != 0)
+                        {
+                            valorATomar = pixelEsquerda;
+                        }
+                        else
+                        {
+                            valorATomar = ++valor;
+                        }
+
+                        matrizIntermedia[indexMatrixInt] = valorATomar;
                     }
                     else
                     {
-                        dataPtrDestino[index] = (byte)0;
-                        dataPtrDestino[index + 1] = (byte)0;
-                        dataPtrDestino[index + 2] = (byte)0;
+                        matrizIntermedia[indexMatrixInt] = 0;
                     }
 
-                    //Borda de Cima
-                    index = (nChan * grossuraBorda) + ((grossuraBorda - 1) * widthTotal);
-                    for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderXLim; pixelBorda++)
+                    index += nChan;
+                    indexMatrixInt += 1;
+                }
+
+                //Borda da esquerda
+                index = (nChan * (grossuraBorda - 1)) + (grossuraBorda * widthTotal);
+                indexMatrixInt = width;
+                for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderYLim; pixelBorda++)
+                {
+                    if (dataPtrOrigem[index] == 0)
+                    {
+                        pixelCima = matrizIntermedia[indexMatrixInt - width];
+
+                        if (pixelCima != 0)
+                        {
+                            valorATomar = pixelCima;
+                        }
+                        else
+                        {
+                            valorATomar = ++valor;
+                        }
+
+                        matrizIntermedia[indexMatrixInt] = valorATomar;
+                    }
+                    else
+                    {
+                        matrizIntermedia[indexMatrixInt] = 0;
+                    }
+
+                    index += widthTotal;
+                    indexMatrixInt += width;
+                }
+
+                List<List<int>> labels = new List<List<int>>();
+
+                //Core
+                index = (grossuraBorda * widthTotal) + (grossuraBorda * nChan);
+                indexMatrixInt = width + 1;
+
+                for (PixelNoDestinoY = 0; PixelNoDestinoY < loopCoreYLim; PixelNoDestinoY++)
+                {
+                    for (PixelNoDestinoX = 0; PixelNoDestinoX < loopCoreXLim; PixelNoDestinoX++)
                     {
                         if (dataPtrOrigem[index] == 0)
                         {
-                            pixelEsquerda = dataPtrDestino[index - nChan];
+
+                            pixelEsquerda = matrizIntermedia[indexMatrixInt - 1];
+
+                            pixelCima = matrizIntermedia[indexMatrixInt - width];
 
                             if (pixelEsquerda != 0)
                             {
-                                valorATomar = pixelEsquerda;
-                            }
-                            else
-                            {
-                                valorATomar = ++valor;
-                            }
-                            dataPtrDestino[index] = (byte)valorATomar;
-                            dataPtrDestino[index + 1] = (byte)valorATomar;
-                            dataPtrDestino[index + 2] = (byte)valorATomar;
-                        }
-                        else
-                        {
-                            dataPtrDestino[index] = (byte)0;
-                            dataPtrDestino[index + 1] = (byte)0;
-                            dataPtrDestino[index + 2] = (byte)0;
-                        }
-
-                        index += nChan;
-                    }
-
-                    //Borda da esquerda
-                    index = (nChan * (grossuraBorda - 1)) + (grossuraBorda * widthTotal);
-                    for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderYLim; pixelBorda++)
-                    {
-                        if (dataPtrOrigem[index] == 0)
-                        {
-                            pixelCima = dataPtrDestino[index - widthTotal];
-
-                            if (pixelCima != 0)
-                            {
-                                valorATomar = pixelCima;
-                            }
-                            else
-                            {
-                                valorATomar = ++valor;
-                            }
-                            dataPtrDestino[index] = (byte)valorATomar;
-                            dataPtrDestino[index + 1] = (byte)valorATomar;
-                            dataPtrDestino[index + 2] = (byte)valorATomar;
-                        }
-                        else
-                        {
-                            dataPtrDestino[index] = (byte)0;
-                            dataPtrDestino[index + 1] = (byte)0;
-                            dataPtrDestino[index + 2] = (byte)0;
-                        }
-
-                        index += widthTotal;
-                    }
-
-                    //Core
-                    if (nChan == 3) // image in RGB
-                    {
-                        index = (grossuraBorda * widthTotal) + (grossuraBorda * nChan);
-
-                        for (PixelNoDestinoY = 0; PixelNoDestinoY < loopCoreYLim; PixelNoDestinoY++)
-                        {
-                            for (PixelNoDestinoX = 0; PixelNoDestinoX < loopCoreXLim; PixelNoDestinoX++)
-                            {
-                                if (dataPtrOrigem[index] == 0)
+                                if (pixelCima != 0)
                                 {
-                                    
-                                    pixelEsquerda = dataPtrDestino[index - nChan];
-
-                                    pixelCima = dataPtrDestino[index - widthTotal];
-
-                                    if (pixelEsquerda != 0)
+                                    if (pixelEsquerda != pixelCima)
                                     {
-                                        if (pixelCima != 0)
+
+                                        valorATomar = Math.Min(pixelEsquerda, pixelCima);
+
+                                        bool introduzido = false;
+
+                                        foreach (var list in labels)
                                         {
-                                            valorATomar = Math.Min(pixelEsquerda, pixelCima);
-                                        } else valorATomar = pixelEsquerda;
+                                            if ((list.Contains(pixelEsquerda) && list.Contains(pixelCima)))
+                                            {
+                                                introduzido = true;
+                                            }
+                                            else if (list.Contains(pixelEsquerda))
+                                            {
+                                                list.Add(pixelCima);
+                                                introduzido = true;
+                                            }
+                                            else if (list.Contains(pixelCima))
+                                            {
+                                                list.Add(pixelEsquerda);
+                                                introduzido = true;
+                                            }
+                                        }
+
+                                        if (!introduzido)
+                                        {
+                                            List<int> newLabel = new List<int>();
+                                            newLabel.Add(pixelEsquerda);
+                                            newLabel.Add(pixelCima);
+                                            labels.Add(newLabel);
+                                        }
                                     }
                                     else
                                     {
-                                        if(pixelCima != 0)
-                                        {
-                                            valorATomar = pixelCima;
-                                        } else
-                                        {
-                                            valorATomar = ++valor;
-                                        }
+                                        valorATomar = pixelCima;
                                     }
-                                    dataPtrDestino[index] = (byte)valorATomar;
-                                    dataPtrDestino[index + 1] = (byte)valorATomar;
-                                    dataPtrDestino[index + 2] = (byte)valorATomar;
+                                }
+                                else valorATomar = pixelEsquerda;
+                            }
+                            else
+                            {
+                                if (pixelCima != 0)
+                                {
+                                    valorATomar = pixelCima;
                                 }
                                 else
                                 {
-                                    dataPtrDestino[index] = (byte)0;
-                                    dataPtrDestino[index + 1] = (byte)0;
-                                    dataPtrDestino[index + 2] = (byte)0;
+                                    valorATomar = ++valor;
                                 }
-
-                                // advance the pointer to the next pixel
-                                index += nChan;
                             }
-                            //at the end of the line advance the pointer by the aligment bytes (padding)
-                            index += (padding + 2 * (grossuraBorda * nChan));
+                            matrizIntermedia[indexMatrixInt] = valorATomar;
                         }
-                    }
+                        else
+                        {
+                            matrizIntermedia[indexMatrixInt] = 0;
+                        }
 
-                    // Aqui temos meio 
-                    
+                        // advance the pointer to the next pixel
+                        index += nChan;
+                        indexMatrixInt += 1;
+                    }
+                    //at the end of the line advance the pointer by the aligment bytes (padding)
+                    index += (padding + 2 * (grossuraBorda * nChan));
+                    indexMatrixInt += 2;
+                }
+
+                for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
+                {
+                    for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
+                    {
+                        pixel = matrizIntermedia[PixelNoDestinoY * width + PixelNoDestinoX];
+
+                        if (pixel != 0)
+                        {
+                            foreach (var list in labels)
+                            {
+                                if (list.Contains(pixel))
+                                {
+                                    valorATomar = list.Min();
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            valorATomar = 255;
+                        }
+
+                        matrizIntermedia[PixelNoDestinoY * width + PixelNoDestinoX] = valorATomar;
+                    }
+                }
+
+                index = 0;
+
+                for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
+                {
+                    for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
+                    {
+                        dataPtrDestino[index] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
+                        dataPtrDestino[index + 1] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
+                        dataPtrDestino[index + 2] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
+
+                        index += nChan;
+                    }
+                    index += padding;
                 }
             }
         }
