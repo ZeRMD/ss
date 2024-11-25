@@ -549,6 +549,8 @@ namespace SS_OpenCV
             //copy Undo Image
             imgUndo = img.Copy();
 
+            ImageClass.FiltroDeVermelho(img);
+
             ImageClass.ConectedComponentsAlgIter(img.Copy(), img);
 
             ImageViewer.Image = img;
@@ -557,7 +559,7 @@ namespace SS_OpenCV
             Cursor = Cursors.Default; // normal cursor
         }
 
-        private void oxunsqBinToolStripMenuItem_Click(object sender, EventArgs e)
+        private void teste2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (img == null) // verify if the image is already opened
                 return;
@@ -567,7 +569,7 @@ namespace SS_OpenCV
             //copy Undo Image
             imgUndo = img.Copy();
 
-            ImageClass.ConvertToBW_Otsu(img);
+            ImageClass.FiltroDeVermelho(img);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen

@@ -70,7 +70,7 @@
             this.ImageViewer = new Emgu.CV.UI.ImageBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.oxunsqBinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.teste2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -91,7 +91,7 @@
             this.autoresToolStripMenuItem,
             this.evalToolStripMenuItem,
             this.testeToolStripMenuItem,
-            this.oxunsqBinToolStripMenuItem});
+            this.teste2ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -114,26 +114,26 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveToolStripMenuItem.Text = "Save As...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(187, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -399,12 +399,12 @@
             this.statusLabel.Size = new System.Drawing.Size(60, 20);
             this.statusLabel.Text = "X :-   Y:-";
             // 
-            // oxunsqBinToolStripMenuItem
+            // teste2ToolStripMenuItem
             // 
-            this.oxunsqBinToolStripMenuItem.Name = "oxunsqBinToolStripMenuItem";
-            this.oxunsqBinToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
-            this.oxunsqBinToolStripMenuItem.Text = "oxunsqBin";
-            this.oxunsqBinToolStripMenuItem.Click += new System.EventHandler(this.oxunsqBinToolStripMenuItem_Click);
+            this.teste2ToolStripMenuItem.Name = "teste2ToolStripMenuItem";
+            this.teste2ToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.teste2ToolStripMenuItem.Text = "Teste2";
+            this.teste2ToolStripMenuItem.Click += new System.EventHandler(this.teste2ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -473,7 +473,7 @@
         private System.Windows.Forms.ToolStripMenuItem histogramsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oxunsqBinToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teste2ToolStripMenuItem;
     }
 }
 

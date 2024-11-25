@@ -196,7 +196,7 @@ namespace SS_OpenCV
 
         /// <summary>
         /// Image Negative com acesso direto a memória
-        /// channel = 0 (blue) / channel = 1 (green) / channel = 2 (red)
+        /// Apenas o channel (red)
         /// </summary>
         /// <param name="img">Image</param>
         public static void RedChannel(Image<Bgr, byte> img)
@@ -2276,7 +2276,7 @@ namespace SS_OpenCV
         }
 
         /// <summary>
-        ///  Mediana com OpenCV
+        ///  Mediana 3D
         ///  - Recebe a imagem a alterar e uma cópia da imagem
         /// </summary>
         /// <param name="img">Image</param>
@@ -2795,6 +2795,63 @@ namespace SS_OpenCV
                         index += nChan;
                     }
                     index += padding;
+                }
+            }
+        }
+
+        public static void FiltroDeVermelho(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+                
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                byte blue, green, red;
+                byte gray;
+
+                int pixelX;
+                int pixelY;
+               
+                if (nChan == 3) // image in RGB
+                {
+                    for (pixelY = 0; pixelY < height; pixelY++)
+                    {
+                        for (pixelX = 0; pixelX < width; pixelX++)
+                        {
+                            //retrieve 3 colour components
+                            blue = dataPtr[0];
+                            green = dataPtr[1];
+                            red = dataPtr[2];
+
+                            if (((red - blue > 50) && (red - green > 50)))
+                            {
+                                dataPtr[0] = (byte)0;
+                                dataPtr[1] = (byte)0;
+                                dataPtr[2] = (byte)255;
+                                // if(Math.Abs(red - blue) < 30 && Math.Abs(red - green) < 30)
+                            }
+                            else
+                            {
+                                gray = (byte)Math.Round(((int)blue + green + red) / 3.0);
+
+                                dataPtr[0] = (byte)gray;
+                                dataPtr[1] = (byte)gray;
+                                dataPtr[2] = (byte)gray;
+                            }
+
+                            //Endereçamento absoluto
+                            dataPtr += nChan;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtr += padding;
+                    }
                 }
             }
         }
