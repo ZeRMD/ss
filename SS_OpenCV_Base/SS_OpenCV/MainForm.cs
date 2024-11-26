@@ -549,16 +549,25 @@ namespace SS_OpenCV
             //copy Undo Image
             imgUndo = img.Copy();
 
-            ImageClass.FiltroDeVermelho(img);
+            //ImageClass.ConvertToBW_Otsu(img);
 
-            ImageClass.ConectedComponentsAlgIter(img.Copy(), img);
+            //ImageClass.FiltroDeVermelho(img);
+
+            //ImageClass.ConectedComponentsAlgIter(img.Copy(), img);
+
+            //ImageClass.EncontrarObjetos(img, );
+
+            //ImageClass.QuadradaoObjetos(,);
+
+            ImageClass.FiltroDeVermelho(img);
+            ImageClass.ConvertToBW_Otsu(img);
+            ImageClass.Tudo(img.Copy(), img);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen
 
             Cursor = Cursors.Default; // normal cursor
         }
-
         private void teste2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (img == null) // verify if the image is already opened
@@ -570,6 +579,9 @@ namespace SS_OpenCV
             imgUndo = img.Copy();
 
             ImageClass.FiltroDeVermelho(img);
+
+            // Display the image in a window
+            //CvInvoke.Imshow("Loaded Image", img2);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen

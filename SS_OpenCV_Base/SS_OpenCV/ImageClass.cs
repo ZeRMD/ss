@@ -21,6 +21,8 @@ using System.ComponentModel;
 using Emgu.CV.Ocl;
 
 using ResultsDLL;
+using Emgu.CV.OCR;
+using System.Reflection.Emit;
 
 namespace SS_OpenCV
 {
@@ -2547,22 +2549,19 @@ namespace SS_OpenCV
             }
         }
 
-        public static void ConectedComponentsAlgIter(Emgu.CV.Image<Bgr, byte> imgOri, Emgu.CV.Image<Bgr, byte> imgDest)
+        public static List<int> ConectedComponentsAlgIter(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
             {
-                ConvertToBW_Otsu(imgOri);
-                MIplImage mori = imgOri.MIplImage;
-                MIplImage mdest = imgDest.MIplImage;
+                MIplImage m1 = img.MIplImage;
 
-                byte* dataPtrOrigem = (byte*)mori.ImageData.ToPointer(); // Pointer to the image origem
-                byte* dataPtrDestino = (byte*)mdest.ImageData.ToPointer(); // Pointer to the imagem destino
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the image origem
 
-                int width = imgOri.Width;
-                int height = imgOri.Height;
-                int nChan = mori.NChannels;
-                int padding = mori.WidthStep - mori.NChannels * mori.Width; // alinhament bytes (padding)
-                int widthTotal = mori.WidthStep;
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels;
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
 
                 int PixelNoDestinoX, PixelNoDestinoY;
 
@@ -2598,7 +2597,7 @@ namespace SS_OpenCV
                 index = 0;
                 indexMatrixInt = 0;
 
-                if (dataPtrOrigem[index] == 0)
+                if (dataPtr[index] == 0)
                 {
                     valorATomar = ++valor;
 
@@ -2615,7 +2614,7 @@ namespace SS_OpenCV
 
                 for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderXLim; pixelBorda++)
                 {
-                    if (dataPtrOrigem[index] == 0)
+                    if (dataPtr[index] == 0)
                     {
                         pixelEsquerda = matrizIntermedia[indexMatrixInt - 1];
 
@@ -2644,7 +2643,7 @@ namespace SS_OpenCV
                 indexMatrixInt = width;
                 for (pixelBorda = 0 + grossuraBorda; pixelBorda < loopBorderYLim; pixelBorda++)
                 {
-                    if (dataPtrOrigem[index] == 0)
+                    if (dataPtr[index] == 0)
                     {
                         pixelCima = matrizIntermedia[indexMatrixInt - width];
 
@@ -2678,7 +2677,7 @@ namespace SS_OpenCV
                 {
                     for (PixelNoDestinoX = 0; PixelNoDestinoX < loopCoreXLim; PixelNoDestinoX++)
                     {
-                        if (dataPtrOrigem[index] == 0)
+                        if (dataPtr[index] == 0)
                         {
 
                             pixelEsquerda = matrizIntermedia[indexMatrixInt - 1];
@@ -2784,18 +2783,29 @@ namespace SS_OpenCV
 
                 index = 0;
 
+                List<int> listaobjetos = new List<int>();
+
+                byte pixeli;
+
                 for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
                 {
                     for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
                     {
-                        dataPtrDestino[index] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
-                        dataPtrDestino[index + 1] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
-                        dataPtrDestino[index + 2] = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
+                        pixeli = (byte)matrizIntermedia[(width * PixelNoDestinoY) + PixelNoDestinoX];
+
+                        if (!listaobjetos.Contains(pixeli) && pixeli != 255)
+                        {
+                            listaobjetos.Add(pixeli);
+                        }
+                        dataPtr[index] = pixeli;
+                        dataPtr[index + 1] = pixeli;
+                        dataPtr[index + 2] = pixeli;
 
                         index += nChan;
                     }
                     index += padding;
                 }
+                return listaobjetos;
             }
         }
 
@@ -2818,7 +2828,7 @@ namespace SS_OpenCV
 
                 int pixelX;
                 int pixelY;
-               
+
                 if (nChan == 3) // image in RGB
                 {
                     for (pixelY = 0; pixelY < height; pixelY++)
@@ -2841,9 +2851,17 @@ namespace SS_OpenCV
                             {
                                 gray = (byte)Math.Round(((int)blue + green + red) / 3.0);
 
-                                dataPtr[0] = (byte)gray;
-                                dataPtr[1] = (byte)gray;
-                                dataPtr[2] = (byte)gray;
+                                if (gray > 70)
+                                {
+                                    dataPtr[0] = (byte)255;
+                                    dataPtr[1] = (byte)255;
+                                    dataPtr[2] = (byte)255;
+                                } else
+                                {
+                                    dataPtr[0] = (byte)gray;
+                                    dataPtr[1] = (byte)gray;
+                                    dataPtr[2] = (byte)gray;
+                                }
                             }
 
                             //Endereçamento absoluto
@@ -2855,5 +2873,204 @@ namespace SS_OpenCV
                 }
             }
         }
+
+        public static List<int[]> EncontrarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int> listaobjetos)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                int[] a;
+
+                List<int[]> listaObjetosCortados = new List<int[]>();
+
+                int xMax;
+                int xMin;
+                int yMax;
+                int yMin;
+                int index;
+
+                foreach (var obj in listaobjetos)
+                {
+                    xMax = int.MinValue;
+                    xMin = int.MaxValue;
+                    yMax = int.MinValue;
+                    yMin = int.MaxValue;
+
+                    a = new int[4];
+
+                    index = 0;
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
+                    {
+                        for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
+                        {
+
+                            if (dataPtr[index] == obj)
+                            {
+                                if (PixelNoDestinoX < xMin) xMin = PixelNoDestinoX; // Update xMin
+                                if (PixelNoDestinoX > xMax) xMax = PixelNoDestinoX; // Update xMax
+                                if (PixelNoDestinoY < yMin) yMin = PixelNoDestinoY; // Update yMin
+                                if (PixelNoDestinoY > yMax) yMax = PixelNoDestinoY; // Update yMax
+                            }
+
+                            index += nChan;
+                        }
+                        index += padding;
+                    }
+
+                    a[0] = xMin;
+                    a[1] = yMin;
+                    a[2] = xMax-xMin; // Width
+                    a[3] = yMax-yMin; // Height
+                    listaObjetosCortados.Add(a);
+                }
+
+                return listaObjetosCortados;
+            }
+        }
+
+        public static void QuadradaoObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                int[] a = new int[4];
+
+                Bgr cor = new Bgr();
+                cor.Green = 0;
+                cor.Red = 0;
+                cor.Blue = 255;
+
+                List<int[]> listaObjetosCortados = new List<int[]>();
+
+                Rectangle rect; // x, y, width, height
+
+                foreach (var obj in listaobjetos)
+                {
+                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
+                    img.Draw(rect, cor,1);
+                }
+            }
+        }
+
+        public static void Tudo(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
+        {
+            unsafe
+            {
+                List<int[]> a = new List<int[]>();
+                List<int> b = new List<int>();
+
+                b = ConectedComponentsAlgIter(img);
+
+                a = EncontrarObjetos(img, b);
+
+                QuadradaoObjetos(img2, a);
+
+            }
+        }
+        
+        public static int CompararDigito(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+                //Image<Bgr, byte> img0 = new Image<Bgr, byte>("C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png");
+                
+                String path = "C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png";
+                char[] pathChars;
+                Image<Bgr, byte> imgNumber;
+
+                int melhorComparacao = 0;
+                int comparacao = 0;
+                int digito= 0;
+
+                MIplImage m = img.MIplImage;
+                byte* dataPtr = (byte*)m.ImageData.ToPointer(); // Pointer to the image
+                int height = m.Height; 
+                int width = m.Width;
+                int nChan = m.NChannels;
+                int padding = m.WidthStep - m.NChannels * m.Width; // alinhament bytes (padding)
+
+
+                MIplImage mnum;
+                byte* dataPtrNum;
+
+                int PixelNoDestinoY;
+                int PixelNoDestinoX;
+                int index;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    pathChars = path.ToCharArray();
+                    pathChars[path.LastIndexOf('0')] = (char)('0' + i);
+                    path = new string(pathChars);
+
+                    imgNumber = new Image<Bgr, byte>(path);
+                    imgNumber.Resize(img.Width, img.Height, Inter.Linear);
+                    ConvertToBW_Otsu(imgNumber);
+
+                    mnum = img.MIplImage;
+                    dataPtrNum = (byte*)mnum.ImageData.ToPointer(); // Pointer to the image
+                    
+                    index = 0;
+                    comparacao = 0;
+
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
+                    {
+                        for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
+                        {
+                            
+                            if (dataPtr[index] == dataPtrNum[index])
+                            {
+                                comparacao ++;
+                            }
+
+                            index += nChan;
+                        }
+                        index += padding;
+                    }
+
+                    if (comparacao > melhorComparacao)
+                    {
+                        digito = i;
+                    }
+                }
+
+                return digito;
+            }
+        }
+
+        /// <summary>
+        /// Sinal Reader
+        /// </summary>
+        /// <param name="imgDest">imagem de destino (cópia da original)</param>
+        /// <param name="imgOrig">imagem original </param>
+        /// <param name="level">nivel de dificuldade da imagem</param>
+        /// <param name="sinalResult">Objecto resultado - lista de sinais e respectivas informaçoes</param>
+        public static void SinalReader(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, int level, out Results sinalResult)
+        {
+            sinalResult = new Results();
+        }
+
     }
 }
