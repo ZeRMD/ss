@@ -2939,6 +2939,52 @@ namespace SS_OpenCV
             }
         }
 
+        public static List<int[]> FiltrarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                bool objectOk;
+
+                List<int[]> listaObjetosSaida = new List<int[]>();
+
+                foreach (var obj in listaObjetos)
+                {
+                    objectOk = true;
+
+                    // Tamanho geral do objeto em comparacao ao tamanho da imagem
+                    if (Math.Abs(obj[2] - (width/2)) > 50) // || (obj[3] - (height / 4) > 20) 
+                    {
+                        objectOk = false;
+                    }
+
+                    // Tamanho geral do objeto em pixels
+                    if ((obj[2] * obj[3]) < 200)
+                    {
+                        objectOk = false;
+                    }
+
+                    if (objectOk)
+                    {
+                        listaObjetosSaida.Add(obj);
+                    }
+                }
+
+                return listaObjetosSaida;
+            }
+        }
+
         public static void QuadradaoObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
         {
             unsafe
@@ -2979,13 +3025,16 @@ namespace SS_OpenCV
             unsafe
             {
                 List<int[]> a = new List<int[]>();
+                List<int[]> c = new List<int[]>();
                 List<int> b = new List<int>();
 
                 b = ConectedComponentsAlgIter(img);
 
                 a = EncontrarObjetos(img, b);
+                
+                c = FiltrarObjetos(img, a);
 
-                QuadradaoObjetos(img2, a);
+                QuadradaoObjetos(img2, c);
 
             }
         }
