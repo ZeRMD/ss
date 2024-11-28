@@ -544,10 +544,13 @@ namespace SS_OpenCV
             if (img == null) // verify if the image is already opened
                 return;
 
+            Image<Bgr, Byte> img2 = null; // working image
+
             Cursor = Cursors.WaitCursor; // clock cursor 
 
             //copy Undo Image
             imgUndo = img.Copy();
+            img2 = img.Copy();
 
             //ImageClass.ConvertToBW_Otsu(img);
 
@@ -559,8 +562,8 @@ namespace SS_OpenCV
 
             //ImageClass.QuadradaoObjetos(,);
 
-            //ImageClass.FiltroDeVermelho(img);
-            //ImageClass.ConvertToBW_Otsu(img);
+            ImageClass.FiltroDeCor(img);
+            ImageClass.ConvertToBW_Otsu(img);
             ImageClass.Tudo(img.Copy(), img);
 
             ImageViewer.Image = img;

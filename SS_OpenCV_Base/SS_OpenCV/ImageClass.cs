@@ -2859,19 +2859,65 @@ namespace SS_OpenCV
                             }
                             else
                             {
-                                gray = (byte)Math.Round(((int)blue + green + red) / 3.0);
+                                dataPtr[0] = (byte)255;
+                                dataPtr[1] = (byte)255;
+                                dataPtr[2] = (byte)255;
+                            }
 
-                                if (gray > 70)
-                                {
-                                    dataPtr[0] = (byte)255;
-                                    dataPtr[1] = (byte)255;
-                                    dataPtr[2] = (byte)255;
-                                } else
-                                {
-                                    dataPtr[0] = (byte)gray;
-                                    dataPtr[1] = (byte)gray;
-                                    dataPtr[2] = (byte)gray;
-                                }
+                            //Endereçamento absoluto
+                            dataPtr += nChan;
+                        }
+                        //at the end of the line advance the pointer by the aligment bytes (padding)
+                        dataPtr += padding;
+                    }
+                }
+            }
+        }
+
+        public static void FiltroDeCor(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                byte blue, green, red;
+                byte gray;
+
+                int pixelX;
+                int pixelY;
+
+                if (nChan == 3) // image in RGB
+                {
+                    for (pixelY = 0; pixelY < height; pixelY++)
+                    {
+                        for (pixelX = 0; pixelX < width; pixelX++)
+                        {
+                            //retrieve 3 colour components
+                            blue = dataPtr[0];
+                            green = dataPtr[1];
+                            red = dataPtr[2];
+
+                            gray = (byte)Math.Round(((int)blue + green + red) / 3.0);
+
+                            if (gray > 70)
+                            {
+                                dataPtr[0] = (byte)255;
+                                dataPtr[1] = (byte)255;
+                                dataPtr[2] = (byte)255;
+                            }
+                            else
+                            {
+                                dataPtr[0] = (byte)gray;
+                                dataPtr[1] = (byte)gray;
+                                dataPtr[2] = (byte)gray;
                             }
 
                             //Endereçamento absoluto
@@ -3098,8 +3144,6 @@ namespace SS_OpenCV
                 cor.Red = 0;
                 cor.Blue = 255;
 
-                List<int[]> listaObjetosCortados = new List<int[]>();
-
                 Rectangle rect; // x, y, width, height
 
                 foreach (var obj in listaobjetos)
@@ -3110,6 +3154,59 @@ namespace SS_OpenCV
             }
         }
 
+        public static List<Emgu.CV.Image<Bgr, byte>> CortarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                int[] a = new int[4];
+
+                Bgr cor = new Bgr();
+                cor.Green = 0;
+                cor.Red = 0;
+                cor.Blue = 255;
+
+                List<Emgu.CV.Image<Bgr, byte>> listaObjetosCortados = new List<Emgu.CV.Image<Bgr, byte>>();
+
+                Rectangle rect; // x, y, width, height
+
+                foreach (var obj in listaobjetos)
+                {
+                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
+                    listaObjetosCortados.Add(img.Copy(rect));
+                }
+
+                return listaObjetosCortados;
+            }
+        }
+
+        public static List<int> ComparaDigitos(List<Emgu.CV.Image<Bgr, byte>> lista)
+        {
+            unsafe
+            {
+                List<int> digitos = new List<int>();
+                
+                foreach (var obj in lista)
+                {
+                    digitos.Add(CompararDigito(obj));
+                }
+
+                return digitos;
+            }
+        }
+
+
         public static void Tudo(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
         {
             unsafe
@@ -3117,7 +3214,7 @@ namespace SS_OpenCV
                 List<int[]> a = new List<int[]>();
                 List<int[]> c = new List<int[]>();
                 List<int> b = new List<int>();
-
+                
                 b = ConectedComponentsAlgIter(img);
 
                 a = EncontrarObjetos(img, b);
@@ -3125,7 +3222,10 @@ namespace SS_OpenCV
                 c = FiltrarObjetosDentroSinal(img, a);
 
                 QuadradaoObjetos(img2, c);
-
+                
+                //QuadradaoObjetos(img2, FiltrarObjetosDentroSinal(img, EncontrarObjetos(img, ConectedComponentsAlgIter(img))));
+                
+                ComparaDigitos(CortarObjetos(img2, c));
             }
         }
         
