@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArduinoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArduinoForm.Designer.cs">
+      <DependentUpon>ArduinoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthorsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ArduinoForm.resx">
+      <DependentUpon>ArduinoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuthorsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AuthorsForm.cs</DependentUpon>

@@ -823,7 +823,7 @@ namespace SS_OpenCV
         /// Mean filter 3*3 
         /// </summary>
         /// <param name="img">Image</param>
-        public static void Mean_solutionB(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig){
+        public static void Mean_solutionBA(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig){
             unsafe
             {
 
@@ -2431,6 +2431,16 @@ namespace SS_OpenCV
         }
 
         /// <summary>
+        /// Equalizacao do Histograma
+        /// </summary>
+        /// - Recebe a imagem a equalizar
+        /// <param name="img">Image</param>
+        public static void Equalization(Image<Bgr, byte> img)
+        {
+
+        }
+
+        /// <summary>
         /// Histograma de cinzentos
         /// </summary>
         /// - recebe a imagem a alterar e o valor de threshold
@@ -2939,7 +2949,87 @@ namespace SS_OpenCV
             }
         }
 
-        public static List<int[]> FiltrarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
+        public static List<int[]> FiltrarObjetosProcurarSinal(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
+        {
+            unsafe
+            {
+
+                MIplImage m1 = img.MIplImage;
+                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
+
+                int width = img.Width;
+                int height = img.Height;
+                int nChan = m1.NChannels; // number of channels - 3
+                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
+                int widthTotal = m1.WidthStep;
+
+                int PixelNoDestinoX, PixelNoDestinoY;
+
+                int area;
+                int perimetro;
+                bool objectOk;
+
+                double fatorDeForma;
+
+                int index;
+
+                List<int[]> listaObjetosSaida = new List<int[]>();
+
+                foreach (var obj in listaObjetos)
+                {
+                    objectOk = true;
+
+                    // Tamanho geral do objeto em pixels
+                    if (obj[2] * obj[3] < 200)
+                    {
+                        objectOk = false;
+                    }
+
+                    // Se o objeto está contido num quadrado
+                    if (Math.Abs(obj[2] - obj[3]) > 30)
+                    {
+                        objectOk = false;
+                    }
+
+                    // NAO ESTA BEM FEITO
+                    /*
+                    area = 0;
+                    index = obj[0] + obj[1] * widthTotal;
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
+                    {
+                        for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
+                        {
+
+                            if (dataPtr[index] != 0)
+                            {
+                                area++;
+                            }
+
+                            index += nChan;
+                        }
+                        index += padding;
+                    }
+
+                    perimetro = obj[2] + obj[3]; 
+                    fatorDeForma = (4 * Math.PI * area)/Math.Pow(perimetro,2);
+
+                    // Se o objeto é um triangulo ou um circulo
+                    if (Math.Abs(fatorDeForma - 1) > 0.15) 
+                    {
+                        objectOk = false;
+                    }
+                    */
+                    if (objectOk)
+                    {
+                        listaObjetosSaida.Add(obj);
+                    }
+                }
+
+                return listaObjetosSaida;
+            }
+        }
+
+        public static List<int[]> FiltrarObjetosDentroSinal(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
         {
             unsafe
             {
@@ -3032,7 +3122,7 @@ namespace SS_OpenCV
 
                 a = EncontrarObjetos(img, b);
                 
-                c = FiltrarObjetos(img, a);
+                c = FiltrarObjetosDentroSinal(img, a);
 
                 QuadradaoObjetos(img2, c);
 

@@ -71,6 +71,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.teste2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.arduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -90,6 +91,7 @@
             this.imageToolStripMenuItem,
             this.autoresToolStripMenuItem,
             this.evalToolStripMenuItem,
+            this.arduinoToolStripMenuItem,
             this.testeToolStripMenuItem,
             this.teste2ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -148,7 +150,7 @@
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -406,6 +408,13 @@
             this.teste2ToolStripMenuItem.Text = "Teste2";
             this.teste2ToolStripMenuItem.Click += new System.EventHandler(this.teste2ToolStripMenuItem_Click);
             // 
+            // arduinoToolStripMenuItem
+            // 
+            this.arduinoToolStripMenuItem.Name = "arduinoToolStripMenuItem";
+            this.arduinoToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.arduinoToolStripMenuItem.Text = "Arduino";
+            this.arduinoToolStripMenuItem.Click += new System.EventHandler(this.arduinoToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -474,6 +483,7 @@
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem teste2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem arduinoToolStripMenuItem;
     }
 }
 

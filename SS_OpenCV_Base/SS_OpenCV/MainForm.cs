@@ -559,8 +559,8 @@ namespace SS_OpenCV
 
             //ImageClass.QuadradaoObjetos(,);
 
-            ImageClass.FiltroDeVermelho(img);
-            ImageClass.ConvertToBW_Otsu(img);
+            //ImageClass.FiltroDeVermelho(img);
+            //ImageClass.ConvertToBW_Otsu(img);
             ImageClass.Tudo(img.Copy(), img);
 
             ImageViewer.Image = img;
@@ -587,6 +587,14 @@ namespace SS_OpenCV
             ImageViewer.Refresh(); // refresh image on the screen
 
             Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void arduinoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArduinoForm AF = new ArduinoForm();
+            
+            if (AF.ShowDialog() != DialogResult.Cancel)
+                return;
         }
     }
 
