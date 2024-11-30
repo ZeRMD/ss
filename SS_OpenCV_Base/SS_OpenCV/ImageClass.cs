@@ -23,6 +23,8 @@ using Emgu.CV.Ocl;
 using ResultsDLL;
 using Emgu.CV.OCR;
 using System.Reflection.Emit;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Collections;
 
 namespace SS_OpenCV
 {
@@ -3011,44 +3013,45 @@ namespace SS_OpenCV
 
                 int PixelNoDestinoX, PixelNoDestinoY;
 
-                int area;
-                int perimetro;
+                int areaCima;
+                int areaBaixo;
                 bool objectOk;
-
-                double fatorDeForma;
 
                 int index;
 
                 List<int[]> listaObjetosSaida = new List<int[]>();
 
+                double percentagem;
+
                 foreach (var obj in listaObjetos)
                 {
                     objectOk = true;
 
+                    percentagem = ((obj[2] * obj[3]) / (width * (double)height)) * 100;
+
                     // Tamanho geral do objeto em pixels
-                    if (obj[2] * obj[3] < 200)
+                    if (percentagem < 1)
                     {
                         objectOk = false;
                     }
 
                     // Se o objeto está contido num quadrado
-                    if (Math.Abs(obj[2] - obj[3]) > 30)
+                    if (Math.Abs(obj[2] - obj[3]) > 55)
                     {
                         objectOk = false;
                     }
 
-                    // NAO ESTA BEM FEITO
                     /*
-                    area = 0;
+                    areaCima = 0;
                     index = obj[0] + obj[1] * widthTotal;
-                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]/2; PixelNoDestinoY++)
                     {
                         for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
                         {
 
                             if (dataPtr[index] != 0)
                             {
-                                area++;
+                                areaCima++;
                             }
 
                             index += nChan;
@@ -3056,15 +3059,30 @@ namespace SS_OpenCV
                         index += padding;
                     }
 
-                    perimetro = obj[2] + obj[3]; 
-                    fatorDeForma = (4 * Math.PI * area)/Math.Pow(perimetro,2);
-
-                    // Se o objeto é um triangulo ou um circulo
-                    if (Math.Abs(fatorDeForma - 1) > 0.15) 
+                    areaBaixo = 0;
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3] / 2; PixelNoDestinoY++)
                     {
-                        objectOk = false;
+                        for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
+                        {
+
+                            if (dataPtr[index] != 0)
+                            {
+                                areaBaixo++;
+                            }
+
+                            index += nChan;
+                        }
+                        index += padding;
                     }
-                    */
+
+                    if (Math.Abs(areaBaixo - areaCima) > 30)
+                    {
+                        obj[4] = 1; // perigo
+                    } else
+                    {
+                        obj[4] = 0; // Obrigatoriedade
+                    }*/
+
                     if (objectOk)
                     {
                         listaObjetosSaida.Add(obj);
@@ -3089,24 +3107,36 @@ namespace SS_OpenCV
                 int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
                 int widthTotal = m1.WidthStep;
 
-                int PixelNoDestinoX, PixelNoDestinoY;
-
                 bool objectOk;
 
                 List<int[]> listaObjetosSaida = new List<int[]>();
 
+                double percentagem;
+
                 foreach (var obj in listaObjetos)
                 {
                     objectOk = true;
-
+                    
                     // Tamanho geral do objeto em comparacao ao tamanho da imagem
-                    if (Math.Abs(obj[2] - (width/2)) > 50) // || (obj[3] - (height / 4) > 20) 
+                    if (Math.Abs(obj[2] - (width/2)) > 100) // || (obj[3] - (height / 4) > 20) 
                     {
                         objectOk = false;
                     }
 
+                    if (obj[3] - obj[2] < 0) // Ver se comprimento maior que altura
+                    {
+                        objectOk = false;
+                    }
+                    
+                    percentagem = ((obj[2] * obj[3]) / (width * (double)height)) * 100;
+                    
                     // Tamanho geral do objeto em pixels
-                    if ((obj[2] * obj[3]) < 200)
+                    if (percentagem < 2)
+                    {
+                        objectOk = false;
+                    }
+
+                    if (obj[1] < height / 4 || obj[1] > 3*(height / 4))
                     {
                         objectOk = false;
                     }
@@ -3206,7 +3236,6 @@ namespace SS_OpenCV
             }
         }
 
-
         public static void Tudo(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
         {
             unsafe
@@ -3223,19 +3252,51 @@ namespace SS_OpenCV
 
                 QuadradaoObjetos(img2, c);
                 
-                //QuadradaoObjetos(img2, FiltrarObjetosDentroSinal(img, EncontrarObjetos(img, ConectedComponentsAlgIter(img))));
-                
                 ComparaDigitos(CortarObjetos(img2, c));
             }
         }
-        
+
+        public static void Tudo2(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
+        {
+            unsafe
+            {
+                List<Emgu.CV.Image<Bgr, byte>> listaSinais = new List<Image<Bgr, byte>>();
+                List<int[]> a = new List<int[]>();
+                List<int[]> c = new List<int[]>();
+                List<int> b = new List<int>();
+
+                FiltroDeVermelho(img);
+
+                ConvertToBW_Otsu(img);
+
+                b = ConectedComponentsAlgIter(img);
+
+                a = EncontrarObjetos(img, b);
+
+                c = FiltrarObjetosProcurarSinal(img, a);
+                
+                QuadradaoObjetos(img2, c);
+                
+                listaSinais = CortarObjetos(img2, c);
+                
+                foreach (var obj in listaSinais)
+                {
+                    FiltroDeCor(obj);
+                    ConvertToBW_Otsu(obj);
+                    Tudo(obj.Copy(), obj);
+                    //img2 = obj.Copy();
+                }
+                //return img;
+            }
+        }
+
         public static int CompararDigito(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
             {
                 //Image<Bgr, byte> img0 = new Image<Bgr, byte>("C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png");
                 
-                String path = "C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png";
+                String path;
                 char[] pathChars;
                 Image<Bgr, byte> imgNumber;
 
@@ -3250,7 +3311,6 @@ namespace SS_OpenCV
                 int nChan = m.NChannels;
                 int padding = m.WidthStep - m.NChannels * m.Width; // alinhament bytes (padding)
 
-
                 MIplImage mnum;
                 byte* dataPtrNum;
 
@@ -3260,15 +3320,16 @@ namespace SS_OpenCV
 
                 for (int i = 0; i < 10; i++)
                 {
+                    path = "C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png";
                     pathChars = path.ToCharArray();
                     pathChars[path.LastIndexOf('0')] = (char)('0' + i);
                     path = new string(pathChars);
 
                     imgNumber = new Image<Bgr, byte>(path);
-                    imgNumber.Resize(img.Width, img.Height, Inter.Linear);
+                    imgNumber = imgNumber.Resize(width, height, Inter.Linear);
                     ConvertToBW_Otsu(imgNumber);
 
-                    mnum = img.MIplImage;
+                    mnum = imgNumber.MIplImage;
                     dataPtrNum = (byte*)mnum.ImageData.ToPointer(); // Pointer to the image
                     
                     index = 0;
@@ -3291,10 +3352,11 @@ namespace SS_OpenCV
 
                     if (comparacao > melhorComparacao)
                     {
+                        melhorComparacao = comparacao;
                         digito = i;
                     }
                 }
-
+                Console.WriteLine(digito);
                 return digito;
             }
         }
@@ -3308,7 +3370,41 @@ namespace SS_OpenCV
         /// <param name="sinalResult">Objecto resultado - lista de sinais e respectivas informaçoes</param>
         public static void SinalReader(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, int level, out Results sinalResult)
         {
-            sinalResult = new Results();
+            unsafe
+            {
+
+                sinalResult = new Results();
+                Sinal sinal = new Sinal();
+                Digito digito = new Digito();
+                // sinalResult.results.Add();
+
+                Image<Bgr, byte> imgSinalOtsu;
+                List<Emgu.CV.Image<Bgr, byte>> listaSinais = new List<Image<Bgr, byte>>();
+                List<int[]> a = new List<int[]>();
+                List<int[]> c = new List<int[]>();
+                List<int> b = new List<int>();
+
+                FiltroDeVermelho(imgDest);
+
+                ConvertToBW_Otsu(imgDest);
+                
+                imgSinalOtsu = imgDest.Copy();
+
+                b = ConectedComponentsAlgIter(imgDest);
+
+                a = EncontrarObjetos(imgDest, b);
+
+                c = FiltrarObjetosProcurarSinal(imgDest, a);
+
+                listaSinais = CortarObjetos(imgSinalOtsu, c);
+
+                foreach (var obj in listaSinais)
+                {
+                    FiltroDeCor(obj);
+                    ConvertToBW_Otsu(obj);
+                    Tudo(obj.Copy(), obj);
+                }
+            }
         }
 
     }

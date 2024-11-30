@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using ResultsDLL;
 
 namespace SS_OpenCV
 { 
@@ -550,7 +552,7 @@ namespace SS_OpenCV
 
             //copy Undo Image
             imgUndo = img.Copy();
-            img2 = img.Copy();
+            //img2 = img.Copy();
 
             //ImageClass.ConvertToBW_Otsu(img);
 
@@ -562,7 +564,7 @@ namespace SS_OpenCV
 
             //ImageClass.QuadradaoObjetos(,);
 
-            ImageClass.FiltroDeCor(img);
+            ImageClass.FiltroDeVermelho(img);
             ImageClass.ConvertToBW_Otsu(img);
             ImageClass.Tudo(img.Copy(), img);
 
@@ -581,11 +583,14 @@ namespace SS_OpenCV
             //copy Undo Image
             imgUndo = img.Copy();
 
-            ImageClass.FiltroDeVermelho(img);
+            //ImageClass.FiltroDeVermelho(img);
+
+            ImageClass.Tudo2(img.Copy(), img);
 
             // Display the image in a window
             //CvInvoke.Imshow("Loaded Image", img2);
 
+            //ImageViewer.Image = ImageClass.Tudo2(img.Copy(), img);
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen
 
