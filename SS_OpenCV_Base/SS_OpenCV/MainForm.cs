@@ -585,7 +585,11 @@ namespace SS_OpenCV
 
             //ImageClass.FiltroDeVermelho(img);
 
-            ImageClass.Tudo2(img.Copy(), img);
+            //ImageClass.Tudo2(img.Copy(), img);
+
+            Results results;
+
+            ImageClass.SinalReader(img, img.Copy(), 0,out results);
 
             // Display the image in a window
             //CvInvoke.Imshow("Loaded Image", img2);

@@ -3013,11 +3013,14 @@ namespace SS_OpenCV
 
                 int PixelNoDestinoX, PixelNoDestinoY;
 
-                int areaCima;
-                int areaBaixo;
+                int area = 0;
+                int areaCima = 0;
+                int areaBaixo = 0;
+                int index = 0;
+
                 bool objectOk;
 
-                int index;
+                int[] a;
 
                 List<int[]> listaObjetosSaida = new List<int[]>();
 
@@ -3026,7 +3029,7 @@ namespace SS_OpenCV
                 foreach (var obj in listaObjetos)
                 {
                     objectOk = true;
-
+                    a = new int[5];
                     percentagem = ((obj[2] * obj[3]) / (width * (double)height)) * 100;
 
                     // Tamanho geral do objeto em pixels
@@ -3040,52 +3043,54 @@ namespace SS_OpenCV
                     {
                         objectOk = false;
                     }
-
-                    /*
+                    area = 0;
                     areaCima = 0;
-                    index = obj[0] + obj[1] * widthTotal;
-                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]/2; PixelNoDestinoY++)
-                    {
-                        for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
-                        {
-
-                            if (dataPtr[index] != 0)
-                            {
-                                areaCima++;
-                            }
-
-                            index += nChan;
-                        }
-                        index += padding;
-                    }
-
                     areaBaixo = 0;
-                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3] / 2; PixelNoDestinoY++)
+
+                    index = obj[0] * nChan + obj[1] * widthTotal;
+                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
                     {
                         for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
                         {
 
                             if (dataPtr[index] != 0)
                             {
-                                areaBaixo++;
+                                area++;
+                                if(PixelNoDestinoY >= (obj[3] / 2))
+                                {
+                                    areaBaixo++;
+                                } else
+                                {
+                                    areaCima++;
+                                }
                             }
 
                             index += nChan;
                         }
-                        index += padding;
+                        index += (widthTotal - obj[2] * nChan);
                     }
 
-                    if (Math.Abs(areaBaixo - areaCima) > 30)
+                    if ((Math.Abs(area - areaBaixo) < area/2 - area / 45 ) || (Math.Abs(area - areaCima) > area / 2 + area / 45)) // 
                     {
-                        obj[4] = 1; // perigo
+                        a[4] = 0; // perigo
                     } else
                     {
-                        obj[4] = 0; // Obrigatoriedade
-                    }*/
+                        if (dataPtr[obj[2] / 2 * nChan + obj[3] / 2 * widthTotal] != 0)
+                        {
+                            a[4] = 2;
+                        } else
+                        {
+                            a[4] = 1; // Obrigatoriedade
+                        }
+                    }
 
                     if (objectOk)
                     {
-                        listaObjetosSaida.Add(obj);
+                        a[0] = obj[0];
+                        a[1] = obj[1];
+                        a[2] = obj[2];
+                        a[3] = obj[3];
+                        listaObjetosSaida.Add(a);
                     }
                 }
 
@@ -3151,23 +3156,10 @@ namespace SS_OpenCV
             }
         }
 
-        public static void QuadradaoObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
+        public static void QuadradaoObjetosSinais(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
         {
             unsafe
             {
-
-                MIplImage m1 = img.MIplImage;
-                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
-
-                int width = img.Width;
-                int height = img.Height;
-                int nChan = m1.NChannels; // number of channels - 3
-                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
-                int widthTotal = m1.WidthStep;
-
-                int PixelNoDestinoX, PixelNoDestinoY;
-
-                int[] a = new int[4];
 
                 Bgr cor = new Bgr();
                 cor.Green = 0;
@@ -3184,28 +3176,29 @@ namespace SS_OpenCV
             }
         }
 
-        public static List<Emgu.CV.Image<Bgr, byte>> CortarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
+        public static void QuadradaoObjetosDigitos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos, int offsetImgOriX, int offsetImgOriY)
         {
             unsafe
             {
-
-                MIplImage m1 = img.MIplImage;
-                byte* dataPtr = (byte*)m1.ImageData.ToPointer(); // Pointer to the imagem destino
-
-                int width = img.Width;
-                int height = img.Height;
-                int nChan = m1.NChannels; // number of channels - 3
-                int padding = m1.WidthStep - m1.NChannels * m1.Width; // alinhament bytes (padding)
-                int widthTotal = m1.WidthStep;
-
-                int PixelNoDestinoX, PixelNoDestinoY;
-
-                int[] a = new int[4];
-
                 Bgr cor = new Bgr();
                 cor.Green = 0;
                 cor.Red = 0;
                 cor.Blue = 255;
+
+                Rectangle rect; // x, y, width, height
+
+                foreach (var obj in listaobjetos)
+                {
+                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
+                    img.Draw(rect, cor, 1);
+                }
+            }
+        }
+
+        public static List<Emgu.CV.Image<Bgr, byte>> CortarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
+        {
+            unsafe
+            {
 
                 List<Emgu.CV.Image<Bgr, byte>> listaObjetosCortados = new List<Emgu.CV.Image<Bgr, byte>>();
 
@@ -3250,7 +3243,7 @@ namespace SS_OpenCV
                 
                 c = FiltrarObjetosDentroSinal(img, a);
 
-                QuadradaoObjetos(img2, c);
+                QuadradaoObjetosDigitos(img2, c, 0, 0);
                 
                 ComparaDigitos(CortarObjetos(img2, c));
             }
@@ -3275,7 +3268,7 @@ namespace SS_OpenCV
 
                 c = FiltrarObjetosProcurarSinal(img, a);
                 
-                QuadradaoObjetos(img2, c);
+                QuadradaoObjetosDigitos(img2, c, 0, 0);
                 
                 listaSinais = CortarObjetos(img2, c);
                 
@@ -3374,35 +3367,86 @@ namespace SS_OpenCV
             {
 
                 sinalResult = new Results();
-                Sinal sinal = new Sinal();
-                Digito digito = new Digito();
-                // sinalResult.results.Add();
-
-                Image<Bgr, byte> imgSinalOtsu;
-                List<Emgu.CV.Image<Bgr, byte>> listaSinais = new List<Image<Bgr, byte>>();
-                List<int[]> a = new List<int[]>();
-                List<int[]> c = new List<int[]>();
-                List<int> b = new List<int>();
-
-                FiltroDeVermelho(imgDest);
-
-                ConvertToBW_Otsu(imgDest);
                 
-                imgSinalOtsu = imgDest.Copy();
+                List<int[]> objetosSinal = new List<int[]>();
+                List<int[]> objetosSinalFiltrados = new List<int[]>();
+                List<int> labelsSinal = new List<int>();
 
-                b = ConectedComponentsAlgIter(imgDest);
+                List<int[]> objetosDigitos = new List<int[]>();
+                List<int[]> objetosDigitosFiltrados = new List<int[]>();
+                List<int> labelsDigitos = new List<int>();
 
-                a = EncontrarObjetos(imgDest, b);
+                Emgu.CV.Image<Bgr, byte> workingImage;
+                Emgu.CV.Image<Bgr, byte> workingSignal1;
+                Emgu.CV.Image<Bgr, byte> workingSignal2;
 
-                c = FiltrarObjetosProcurarSinal(imgDest, a);
+                Bgr cor = new Bgr();
+                cor.Green = 0;
+                cor.Red = 255;
+                cor.Blue = 0;
 
-                listaSinais = CortarObjetos(imgSinalOtsu, c);
+                Rectangle rect; // x, y, width, height
 
-                foreach (var obj in listaSinais)
+
+                workingImage = imgOrig.Copy();
+
+                FiltroDeVermelho(workingImage);
+
+                ConvertToBW_Otsu(workingImage);
+                
+                labelsSinal = ConectedComponentsAlgIter(workingImage);
+
+                objetosSinal = EncontrarObjetos(workingImage, labelsSinal);
+
+                objetosSinalFiltrados = FiltrarObjetosProcurarSinal(workingImage, objetosSinal);
+
+                foreach (var obj in objetosSinalFiltrados)
                 {
-                    FiltroDeCor(obj);
-                    ConvertToBW_Otsu(obj);
-                    Tudo(obj.Copy(), obj);
+                    Sinal sinal = new Sinal();
+
+                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
+                    sinal.sinalRect = rect; // RETANGULO DO SINAL
+                    imgDest.Draw(rect, cor, 1);
+
+                    if (obj[4] == 0)
+                    {
+                        sinal.sinalEnum = ResultsEnum.sinal_perigo; // Perigo
+                    } else
+                    {
+                        workingSignal1 = imgOrig.Copy(rect);
+                        FiltroDeCor(workingSignal1);
+                        ConvertToBW_Otsu(workingSignal1);
+
+                        workingSignal2 = workingSignal1.Copy();
+
+                        labelsDigitos = ConectedComponentsAlgIter(workingSignal2);
+
+                        objetosDigitos = EncontrarObjetos(workingSignal2, labelsDigitos);
+
+                        objetosDigitosFiltrados = FiltrarObjetosDentroSinal(workingSignal2, objetosDigitos);
+
+                        if (objetosDigitosFiltrados.Count > 1 && obj[4] == 1)
+                        {
+                            sinal.sinalEnum = ResultsEnum.sinal_limite_velocidade; // Velocidade
+                            foreach (var digitoIMG in objetosDigitosFiltrados)
+                            {
+                                Digito digito = new Digito();
+                                int digitoNum;
+                                rect = new Rectangle(digitoIMG[0] + obj[0], digitoIMG[1] + obj[1], digitoIMG[2], digitoIMG[3]); // x, y, width, height
+                                imgDest.Draw(rect, cor, 1);
+                                digito.digitoRect = rect; // RETANGULO DO DIGITO
+                                rect = new Rectangle(digitoIMG[0], digitoIMG[1], digitoIMG[2], digitoIMG[3]); // x, y, width, height
+                                digitoNum = CompararDigito(workingSignal1.Copy(rect));
+                                digito.digito = digitoNum.ToString(); // VALOR DO DIGITO // Transformar o inteiro em string
+                                sinal.digitos.Add(digito);
+                            }
+                        } else
+                        {
+                            sinal.sinalEnum = ResultsEnum.sinal_proibicao; // Obrigacao
+                        }
+                    }
+
+                    sinalResult.results.Add(sinal);
                 }
             }
         }
