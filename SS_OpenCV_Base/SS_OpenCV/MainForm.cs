@@ -566,7 +566,7 @@ namespace SS_OpenCV
 
             ImageClass.FiltroDeVermelho(img);
             ImageClass.ConvertToBW_Otsu(img);
-            ImageClass.Tudo(img.Copy(), img);
+            //ImageClass.Tudo(img.Copy(), img);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen

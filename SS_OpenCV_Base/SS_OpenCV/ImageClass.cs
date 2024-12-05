@@ -2561,6 +2561,13 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Componentes ligados
+        /// </summary>
+        /// - recebe a imagem para fazer componentes ligados (tem de estar binarizada)
+        /// Coloca na imagem com os bojetos identificados por labels
+        /// Devolve uma lista que contém as labels
+        /// <param name="img">Image</param>
         public static List<int> ConectedComponentsAlgIter(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
@@ -2821,6 +2828,11 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Deixa apenas os vermelhos da imagem
+        /// </summary>
+        /// - recebe a imagem a filtrar
+        /// <param name="img">Image</param>
         public static void FiltroDeVermelho(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
@@ -2876,6 +2888,12 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Se o cinzento do pixel for > 70 entao branco
+        /// Se o cinzento do pixel for > 70 entao cinzento
+        /// </summary>
+        /// - recebe a imagem a filtrar
+        /// <param name="img">Image</param>
         public static void FiltroDeCor(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
@@ -2932,6 +2950,72 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Dilatacao com Mascara 3x3
+        /// </summary>
+        /// - recebe a imagem a dilatar
+        /// <param name="inputImage">Image</param>
+        public static void Dilatacao(Image<Bgr, byte> inputImage)
+        {
+            var tempData = (byte[,,])inputImage.Data.Clone();
+
+            int neighborX;
+            int neighborY;
+
+            int x;
+            int dx;
+            int y;
+            int dy;
+
+            // Percorrer cada pixel da imagem
+            for (y = 0; y < inputImage.Height; y++)
+            {
+                for (x = 0; x < inputImage.Width; x++)
+                {
+                    bool hasBlackNeighbor = false;
+
+                    for (dy = -1; dy <= 1; dy++)
+                    {
+                        for (dx = -1; dx <= 1; dx++)
+                        {
+                            neighborX = x + dx;
+                            neighborY = y + dy;
+
+                            if ((neighborX >= 0 && neighborX < inputImage.Width) && (neighborY >= 0 && neighborY < inputImage.Height))
+                            {
+                                if (tempData[neighborY, neighborX, 0] == 0 &&
+                                    tempData[neighborY, neighborX, 1] == 0 &&
+                                    tempData[neighborY, neighborX, 2] == 0)
+                                {
+                                    hasBlackNeighbor = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (hasBlackNeighbor) break;
+                    }
+
+                    // Modificar o pixel diretamente na imagem original
+                    if (hasBlackNeighbor)
+                    {
+                        inputImage.Data[y, x, 0] = 0;
+                        inputImage.Data[y, x, 1] = 0;
+                        inputImage.Data[y, x, 2] = 0;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Recebe a lista de labels
+        /// </summary>
+        /// Devolve uma lista com um vetor de inteiros que contém:
+        ///     a[0] = X canto sup esquerdo;
+        ///     a[1] = Y canto sup esquerdo;
+        ///     a[2] = Width
+        ///     a[3] = Height
+        /// <param name="img">Image</param> <param name="listaobjetos">List<int></param> 
         public static List<int[]> EncontrarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int> listaobjetos)
         {
             unsafe
@@ -2997,6 +3081,20 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Recebe a imagem e a lista de objetos e devolve uma lista de objetos filtrada
+        /// O filtro está desenhado para encontrar objetos com características de sinal
+        /// </summary>
+        /// Devolve uma lista com um vetor de inteiros que contém:
+        ///     a[0] = X canto sup esquerdo;
+        ///     a[1] = Y canto sup esquerdo;
+        ///     a[2] = Width
+        ///     a[3] = Height
+        ///     a[4] = Tipo de sinal
+        ///         a[4] = 0 Perigo
+        ///         a[4] = 1 Obrigacao ou Limite de velocidade
+        ///         a[4] = 2 Obrigacao
+        /// <param name="img">Image</param> <param name="listaObjetos">List<int></param> 
         public static List<int[]> FiltrarObjetosProcurarSinal(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
         {
             unsafe
@@ -3033,7 +3131,7 @@ namespace SS_OpenCV
                     percentagem = ((obj[2] * obj[3]) / (width * (double)height)) * 100;
 
                     // Tamanho geral do objeto em pixels
-                    if (percentagem < 1)
+                    if (percentagem < 0.5)
                     {
                         objectOk = false;
                     }
@@ -3043,49 +3141,52 @@ namespace SS_OpenCV
                     {
                         objectOk = false;
                     }
-                    area = 0;
-                    areaCima = 0;
-                    areaBaixo = 0;
-
-                    index = obj[0] * nChan + obj[1] * widthTotal;
-                    for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
-                    {
-                        for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
-                        {
-
-                            if (dataPtr[index] != 0)
-                            {
-                                area++;
-                                if(PixelNoDestinoY >= (obj[3] / 2))
-                                {
-                                    areaBaixo++;
-                                } else
-                                {
-                                    areaCima++;
-                                }
-                            }
-
-                            index += nChan;
-                        }
-                        index += (widthTotal - obj[2] * nChan);
-                    }
-
-                    if ((Math.Abs(area - areaBaixo) < area/2 - area / 45 ) || (Math.Abs(area - areaCima) > area / 2 + area / 45)) // 
-                    {
-                        a[4] = 0; // perigo
-                    } else
-                    {
-                        if (dataPtr[obj[2] / 2 * nChan + obj[3] / 2 * widthTotal] != 0)
-                        {
-                            a[4] = 2;
-                        } else
-                        {
-                            a[4] = 1; // Obrigatoriedade
-                        }
-                    }
-
+                    
                     if (objectOk)
                     {
+                        area = 0;
+                        areaCima = 0;
+                        areaBaixo = 0;
+                        index = obj[0] * nChan + obj[1] * widthTotal;
+                        for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
+                        {
+                            for (PixelNoDestinoX = 0; PixelNoDestinoX < obj[2]; PixelNoDestinoX++)
+                            {
+
+                                if (dataPtr[index] == 0)
+                                {
+                                    area++;
+                                    if (PixelNoDestinoY >= (obj[3] / 2))
+                                    {
+                                        areaBaixo++;
+                                    }
+                                    else
+                                    {
+                                        areaCima++;
+                                    }
+                                }
+
+                                index += nChan;
+                            }
+                            index += (widthTotal - obj[2] * nChan);
+                        }
+
+                        if (Math.Abs(areaCima - areaBaixo) > area / 10)
+                        {
+                            a[4] = 0; // perigo
+                        }
+                        else
+                        {
+                            if (dataPtr[obj[2] / 2 * nChan + obj[3] / 2 * widthTotal] == 0)
+                            {
+                                a[4] = 2; // Obrigacao
+                            }
+                            else
+                            {
+                                a[4] = 1; // Obrigacao ou Limite de velocidade
+                            }
+                        }
+
                         a[0] = obj[0];
                         a[1] = obj[1];
                         a[2] = obj[2];
@@ -3098,6 +3199,16 @@ namespace SS_OpenCV
             }
         }
 
+        /// <summary>
+        /// Recebe a imagem e a lista de objetos e devolve uma lista de objetos filtrada
+        /// O filtro está desenhado para encontrar objetos com características de digito
+        /// </summary>
+        /// Devolve uma lista com um vetor de inteiros que contém:
+        ///     a[0] = X canto sup esquerdo;
+        ///     a[1] = Y canto sup esquerdo;
+        ///     a[2] = Width
+        ///     a[3] = Height
+        /// <param name="img">Image</param> <param name="listaObjetos">List<int></param> 
         public static List<int[]> FiltrarObjetosDentroSinal(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaObjetos)
         {
             unsafe
@@ -3156,133 +3267,11 @@ namespace SS_OpenCV
             }
         }
 
-        public static void QuadradaoObjetosSinais(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
-        {
-            unsafe
-            {
-
-                Bgr cor = new Bgr();
-                cor.Green = 0;
-                cor.Red = 0;
-                cor.Blue = 255;
-
-                Rectangle rect; // x, y, width, height
-
-                foreach (var obj in listaobjetos)
-                {
-                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
-                    img.Draw(rect, cor,1);
-                }
-            }
-        }
-
-        public static void QuadradaoObjetosDigitos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos, int offsetImgOriX, int offsetImgOriY)
-        {
-            unsafe
-            {
-                Bgr cor = new Bgr();
-                cor.Green = 0;
-                cor.Red = 0;
-                cor.Blue = 255;
-
-                Rectangle rect; // x, y, width, height
-
-                foreach (var obj in listaobjetos)
-                {
-                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
-                    img.Draw(rect, cor, 1);
-                }
-            }
-        }
-
-        public static List<Emgu.CV.Image<Bgr, byte>> CortarObjetos(Emgu.CV.Image<Bgr, byte> img, List<int[]> listaobjetos)
-        {
-            unsafe
-            {
-
-                List<Emgu.CV.Image<Bgr, byte>> listaObjetosCortados = new List<Emgu.CV.Image<Bgr, byte>>();
-
-                Rectangle rect; // x, y, width, height
-
-                foreach (var obj in listaobjetos)
-                {
-                    rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
-                    listaObjetosCortados.Add(img.Copy(rect));
-                }
-
-                return listaObjetosCortados;
-            }
-        }
-
-        public static List<int> ComparaDigitos(List<Emgu.CV.Image<Bgr, byte>> lista)
-        {
-            unsafe
-            {
-                List<int> digitos = new List<int>();
-                
-                foreach (var obj in lista)
-                {
-                    digitos.Add(CompararDigito(obj));
-                }
-
-                return digitos;
-            }
-        }
-
-        public static void Tudo(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
-        {
-            unsafe
-            {
-                List<int[]> a = new List<int[]>();
-                List<int[]> c = new List<int[]>();
-                List<int> b = new List<int>();
-                
-                b = ConectedComponentsAlgIter(img);
-
-                a = EncontrarObjetos(img, b);
-                
-                c = FiltrarObjetosDentroSinal(img, a);
-
-                QuadradaoObjetosDigitos(img2, c, 0, 0);
-                
-                ComparaDigitos(CortarObjetos(img2, c));
-            }
-        }
-
-        public static void Tudo2(Emgu.CV.Image<Bgr, byte> img, Emgu.CV.Image<Bgr, byte> img2)
-        {
-            unsafe
-            {
-                List<Emgu.CV.Image<Bgr, byte>> listaSinais = new List<Image<Bgr, byte>>();
-                List<int[]> a = new List<int[]>();
-                List<int[]> c = new List<int[]>();
-                List<int> b = new List<int>();
-
-                FiltroDeVermelho(img);
-
-                ConvertToBW_Otsu(img);
-
-                b = ConectedComponentsAlgIter(img);
-
-                a = EncontrarObjetos(img, b);
-
-                c = FiltrarObjetosProcurarSinal(img, a);
-                
-                QuadradaoObjetosDigitos(img2, c, 0, 0);
-                
-                listaSinais = CortarObjetos(img2, c);
-                
-                foreach (var obj in listaSinais)
-                {
-                    FiltroDeCor(obj);
-                    ConvertToBW_Otsu(obj);
-                    Tudo(obj.Copy(), obj);
-                    //img2 = obj.Copy();
-                }
-                //return img;
-            }
-        }
-
+        /// <summary>
+        /// Recebe a imagem do digito (binarizada) e deteta qual o digito presente nela comparando-o com uma bateria de imagens
+        /// </summary>
+        /// Devolve o inteiro correspondente ao digito
+        /// <param name="img">Image</param>
         public static int CompararDigito(Emgu.CV.Image<Bgr, byte> img)
         {
             unsafe
@@ -3354,6 +3343,31 @@ namespace SS_OpenCV
             }
         }
 
+        public static void Tudo2(Emgu.CV.Image<Bgr, byte> imgo, Emgu.CV.Image<Bgr, byte> imgd)
+        {
+            List<int[]> objetosSinal = new List<int[]>();
+            List<int[]> objetosSinalFiltrados = new List<int[]>();
+            List<int> labelsSinal = new List<int>();
+
+            List<int[]> objetosDigitos = new List<int[]>();
+            List<int[]> objetosDigitosFiltrados = new List<int[]>();
+            List<int> labelsDigitos = new List<int>();
+
+            Emgu.CV.Image<Bgr, byte> workingImage;
+            Emgu.CV.Image<Bgr, byte> workingSignal1;
+            Emgu.CV.Image<Bgr, byte> workingSignal2;
+
+            Bgr cor = new Bgr();
+            cor.Green = 0;
+            cor.Red = 255;
+            cor.Blue = 0;
+
+            Rectangle rect; // x, y, width, height
+
+
+
+        }
+
         /// <summary>
         /// Sinal Reader
         /// </summary>
@@ -3377,6 +3391,7 @@ namespace SS_OpenCV
                 List<int> labelsDigitos = new List<int>();
 
                 Emgu.CV.Image<Bgr, byte> workingImage;
+                Emgu.CV.Image<Bgr, byte> workingImage2;
                 Emgu.CV.Image<Bgr, byte> workingSignal1;
                 Emgu.CV.Image<Bgr, byte> workingSignal2;
 
@@ -3387,18 +3402,19 @@ namespace SS_OpenCV
 
                 Rectangle rect; // x, y, width, height
 
-
                 workingImage = imgOrig.Copy();
 
                 FiltroDeVermelho(workingImage);
 
                 ConvertToBW_Otsu(workingImage);
-                
+
+                workingImage2 = workingImage.Copy();
+
                 labelsSinal = ConectedComponentsAlgIter(workingImage);
 
                 objetosSinal = EncontrarObjetos(workingImage, labelsSinal);
 
-                objetosSinalFiltrados = FiltrarObjetosProcurarSinal(workingImage, objetosSinal);
+                objetosSinalFiltrados = FiltrarObjetosProcurarSinal(workingImage2, objetosSinal);
 
                 foreach (var obj in objetosSinalFiltrados)
                 {
@@ -3416,7 +3432,12 @@ namespace SS_OpenCV
                         workingSignal1 = imgOrig.Copy(rect);
                         FiltroDeCor(workingSignal1);
                         ConvertToBW_Otsu(workingSignal1);
-
+                        
+                        if (level == 2) // Para sinais com 3 números
+                        {
+                            Dilatacao(workingSignal1);
+                        }
+                        
                         workingSignal2 = workingSignal1.Copy();
 
                         labelsDigitos = ConectedComponentsAlgIter(workingSignal2);
@@ -3425,7 +3446,7 @@ namespace SS_OpenCV
 
                         objetosDigitosFiltrados = FiltrarObjetosDentroSinal(workingSignal2, objetosDigitos);
 
-                        if (objetosDigitosFiltrados.Count > 1 && obj[4] == 1)
+                        if (objetosDigitosFiltrados.Count > 1 && obj[4] == 1) // && obj[4] == 1
                         {
                             sinal.sinalEnum = ResultsEnum.sinal_limite_velocidade; // Velocidade
                             foreach (var digitoIMG in objetosDigitosFiltrados)
