@@ -3495,10 +3495,11 @@ namespace SS_OpenCV
                         FiltroDeCor(workingSignal1);
                         ConvertToBW_Otsu(workingSignal1);
                         
+                        /*
                         if (level == 2) // Para sinais com 3 números
                         {
                             Dilatacao(workingSignal1);
-                        }
+                        }*/
                         
                         workingSignal2 = workingSignal1.Copy();
 
