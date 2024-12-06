@@ -541,72 +541,32 @@ namespace SS_OpenCV
             Cursor = Cursors.Default; // normal cursor
         }
 
-        private void testeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (img == null) // verify if the image is already opened
-                return;
-
-            Image<Bgr, Byte> img2 = null; // working image
-
-            Cursor = Cursors.WaitCursor; // clock cursor 
-
-            //copy Undo Image
-            imgUndo = img.Copy();
-            //img2 = img.Copy();
-
-            //ImageClass.ConvertToBW_Otsu(img);
-
-            //ImageClass.FiltroDeVermelho(img);
-
-            //ImageClass.ConectedComponentsAlgIter(img.Copy(), img);
-
-            //ImageClass.EncontrarObjetos(img, );
-
-            //ImageClass.QuadradaoObjetos(,);
-
-            ImageClass.FiltroDeVermelho(img);
-            ImageClass.ConvertToBW_Otsu(img);
-            //ImageClass.Tudo(img.Copy(), img);
-
-            ImageViewer.Image = img;
-            ImageViewer.Refresh(); // refresh image on the screen
-
-            Cursor = Cursors.Default; // normal cursor
-        }
-        private void teste2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (img == null) // verify if the image is already opened
-                return;
-
-            Cursor = Cursors.WaitCursor; // clock cursor 
-
-            //copy Undo Image
-            imgUndo = img.Copy();
-
-            //ImageClass.FiltroDeVermelho(img);
-
-            //ImageClass.Tudo2(img.Copy(), img);
-
-            Results results;
-
-            ImageClass.SinalReader(img, img.Copy(), 0,out results);
-
-            // Display the image in a window
-            //CvInvoke.Imshow("Loaded Image", img2);
-
-            //ImageViewer.Image = ImageClass.Tudo2(img.Copy(), img);
-            ImageViewer.Image = img;
-            ImageViewer.Refresh(); // refresh image on the screen
-
-            Cursor = Cursors.Default; // normal cursor
-        }
-
         private void arduinoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ArduinoForm AF = new ArduinoForm();
             
             if (AF.ShowDialog() != DialogResult.Cancel)
                 return;
+        }
+
+        private void sinalReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            Results results;
+
+            ImageClass.SinalReader(img, img.Copy(), 0, out results);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
         }
     }
 

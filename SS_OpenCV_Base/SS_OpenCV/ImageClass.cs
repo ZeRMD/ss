@@ -2610,7 +2610,14 @@ namespace SS_OpenCV
 
                 int[] matrizIntermedia = new int[width * height];
 
-                // CvInvoke.CopyMakeBorder(imgOri.Copy(), imgOri, 3, 3, 3, 3, 0);
+                //*****************************//*****************************//
+                // Labeling e Tags
+                //*****************************//*****************************//
+                // Passar por todos os pixeis da imagem.
+                // Fazer o labeling e ficar atento a Tags
+                // Guardar as tags numa lista
+                // Colocar o resultado do labeling numa matriz de inteiros (labeling deixa de ficar limitado a 255 e margens aumentadas para facilidade de código) 
+                //*****************************//*****************************//
 
                 // Canto Superior Esquerdo
                 index = 0;
@@ -2686,9 +2693,9 @@ namespace SS_OpenCV
                     indexMatrixInt += width;
                 }
 
-                List<List<int>> labels = new List<List<int>>();
 
                 //Core
+                List<List<int>> labels = new List<List<int>>();
                 index = (grossuraBorda * widthTotal) + (grossuraBorda * nChan);
                 indexMatrixInt = width + 1;
 
@@ -2765,14 +2772,20 @@ namespace SS_OpenCV
                             matrizIntermedia[indexMatrixInt] = 0;
                         }
 
-                        // advance the pointer to the next pixel
                         index += nChan;
                         indexMatrixInt += 1;
                     }
-                    //at the end of the line advance the pointer by the aligment bytes (padding)
                     index += (padding + 2 * (grossuraBorda * nChan));
                     indexMatrixInt += 2;
                 }
+
+                //*****************************//*****************************//
+                // Equalizar as labels
+                //*****************************//*****************************//
+                // Passar por todas as labels.
+                // Ver quais as relações entre as labels e colocar a menor destas
+                // Colocar o resultado na matriz de inteiros
+                //*****************************//*****************************//
 
                 for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
                 {
@@ -2806,6 +2819,13 @@ namespace SS_OpenCV
 
                 byte pixeli;
 
+                //*****************************//*****************************//
+                // Exit
+                //*****************************//*****************************//
+                // Colocar os resultados na imagem
+                // Preparar uma lista de inteiros com as labels para retornar
+                //*****************************//*****************************//
+
                 for (PixelNoDestinoY = 0; PixelNoDestinoY < height; PixelNoDestinoY++)
                 {
                     for (PixelNoDestinoX = 0; PixelNoDestinoX < width; PixelNoDestinoX++)
@@ -2824,6 +2844,7 @@ namespace SS_OpenCV
                     }
                     index += padding;
                 }
+
                 return listaobjetos;
             }
         }
@@ -2848,10 +2869,18 @@ namespace SS_OpenCV
                 int widthTotal = m1.WidthStep;
 
                 byte blue, green, red;
-                byte gray;
-
+                
                 int pixelX;
                 int pixelY;
+
+                //*****************************//*****************************//
+                // Deixar apenas vermelhos
+                //*****************************//*****************************//
+                // Passar por todos os pixeis da imagem.
+                // Ver se a diferença da componente vermelha para com as outras se é maior que 50
+                // Se sim colocar esse pixel super vermelho
+                // Se não colocar a branco
+                //*****************************//*****************************//
 
                 if (nChan == 3) // image in RGB
                 {
@@ -2914,6 +2943,15 @@ namespace SS_OpenCV
                 int pixelX;
                 int pixelY;
 
+                //*****************************//*****************************//
+                // Retirar a cor da imagem
+                //*****************************//*****************************//
+                // Passar por todos os pixeis da imagem.
+                // Ver se o cinzento (soma das 3 componentes) é maior que 70
+                // Se sim colocar esse pixel preto
+                // Se não colocar a branco
+                //*****************************//*****************************//
+
                 if (nChan == 3) // image in RGB
                 {
                     for (pixelY = 0; pixelY < height; pixelY++)
@@ -2966,6 +3004,15 @@ namespace SS_OpenCV
             int dx;
             int y;
             int dy;
+
+            //*****************************//*****************************//
+            // Dilatador
+            //*****************************//*****************************//
+            // Passar por todos os pixeis da imagem.
+            // Ver se este contem algum na vizinhança preto
+            // Se sim colocar o pixel preto
+            // Se não colocar a branco
+            //*****************************//*****************************//
 
             // Percorrer cada pixel da imagem
             for (y = 0; y < inputImage.Height; y++)
@@ -3041,6 +3088,14 @@ namespace SS_OpenCV
                 int yMax;
                 int yMin;
                 int index;
+
+                //*****************************//*****************************//
+                // Encontra objetos
+                //*****************************//*****************************//
+                // Passar por todas as labels que recebe na lista de inteiros
+                // Vê onde estão contidos e em que coordenadas os objetos com essas labels
+                // Devolve um vetor de inteiros com as coordenadas do canto superior esquerdo, comprimento e a altura de cada objeto
+                //*****************************//*****************************//
 
                 foreach (var obj in listaobjetos)
                 {
@@ -3124,6 +3179,20 @@ namespace SS_OpenCV
 
                 double percentagem;
 
+                //*****************************//*****************************//
+                // Filtra objetos quando procuramos sinais
+                //*****************************//*****************************//
+                // Passar por todos os objetos
+                // Vê onde estão contidos e em que coordenadas estão os objetos com essas labels
+                // Devolve um vetor de inteiros com as coordenadas do canto superior esquerdo, comprimento, altura de cada objeto e tipo de sinal
+                // Este filtro verifica:
+                //      - Tamanho geral do objeto comparado com o tamanho da imagem
+                //      - Se o objeto está contido num quadrado
+                // Verifica o tipo de sinal através da:
+                //      - Forma do objeto (redondo ou triangular) usando a área da metade de cima e a área da metade de baixo do objeto
+                //      - Se o objeto tem parte do sinal no seu centro (alguns sinais de proibição)
+                //*****************************//*****************************//
+
                 foreach (var obj in listaObjetos)
                 {
                     objectOk = true;
@@ -3144,9 +3213,11 @@ namespace SS_OpenCV
                     
                     if (objectOk)
                     {
+                        // Calcular áreas do objeto
                         area = 0;
                         areaCima = 0;
                         areaBaixo = 0;
+
                         index = obj[0] * nChan + obj[1] * widthTotal;
                         for (PixelNoDestinoY = 0; PixelNoDestinoY < obj[3]; PixelNoDestinoY++)
                         {
@@ -3170,13 +3241,14 @@ namespace SS_OpenCV
                             }
                             index += (widthTotal - obj[2] * nChan);
                         }
-
+                        // Forma do objeto(redondo ou triangular) usando a área da metade de cima e a área da metade de baixo do objeto
                         if (Math.Abs(areaCima - areaBaixo) > area / 10)
                         {
                             a[4] = 0; // perigo
                         }
                         else
                         {
+                            // Se o objeto tem parte do sinal no seu centro(alguns sinais de proibição)
                             if (dataPtr[obj[2] / 2 * nChan + obj[3] / 2 * widthTotal] == 0)
                             {
                                 a[4] = 2; // Obrigacao
@@ -3229,17 +3301,24 @@ namespace SS_OpenCV
 
                 double percentagem;
 
+                //*****************************//*****************************//
+                // Filtra objetos quando procuramos digitos
+                //*****************************//*****************************//
+                // Passar por todos os objetos
+                // Vê onde estão contidos e em que coordenadas estão os objetos com essas labels
+                // Devolve um vetor de inteiros com as coordenadas do canto superior esquerdo, comprimento, altura de cada objeto
+                // Este filtro verifica:
+                //      - Tamanho geral do objeto comparado com o tamanho da imagem
+                //      - Se o objeto tem mais altura que comprimento
+                //      - Se o objeto está centrado na imagem
+                //*****************************//*****************************//
+
                 foreach (var obj in listaObjetos)
                 {
                     objectOk = true;
-                    
-                    // Tamanho geral do objeto em comparacao ao tamanho da imagem
-                    if (Math.Abs(obj[2] - (width/2)) > 100) // || (obj[3] - (height / 4) > 20) 
-                    {
-                        objectOk = false;
-                    }
 
-                    if (obj[3] - obj[2] < 0) // Ver se comprimento maior que altura
+                    // Ver se comprimento maior que altura
+                    if (obj[3] - obj[2] < 0) 
                     {
                         objectOk = false;
                     }
@@ -3252,6 +3331,7 @@ namespace SS_OpenCV
                         objectOk = false;
                     }
 
+                    // Objeto centrado na imagem
                     if (obj[1] < height / 4 || obj[1] > 3*(height / 4))
                     {
                         objectOk = false;
@@ -3300,6 +3380,13 @@ namespace SS_OpenCV
                 int PixelNoDestinoX;
                 int index;
 
+                //*****************************//*****************************//
+                // Comparador de digitos
+                //*****************************//*****************************//
+                // Pega em cada imagem da bateria de digitos e dá resize e binariza
+                // Faz comparação direta e o digito onde houve mais pixeis iguais é considerado o digito presente na imagem
+                //*****************************//*****************************//
+
                 for (int i = 0; i < 10; i++)
                 {
                     path = "C:\\ss\\SS_OpenCV_Base\\Imagens\\digitos\\0.png";
@@ -3341,31 +3428,6 @@ namespace SS_OpenCV
                 Console.WriteLine(digito);
                 return digito;
             }
-        }
-
-        public static void Tudo2(Emgu.CV.Image<Bgr, byte> imgo, Emgu.CV.Image<Bgr, byte> imgd)
-        {
-            List<int[]> objetosSinal = new List<int[]>();
-            List<int[]> objetosSinalFiltrados = new List<int[]>();
-            List<int> labelsSinal = new List<int>();
-
-            List<int[]> objetosDigitos = new List<int[]>();
-            List<int[]> objetosDigitosFiltrados = new List<int[]>();
-            List<int> labelsDigitos = new List<int>();
-
-            Emgu.CV.Image<Bgr, byte> workingImage;
-            Emgu.CV.Image<Bgr, byte> workingSignal1;
-            Emgu.CV.Image<Bgr, byte> workingSignal2;
-
-            Bgr cor = new Bgr();
-            cor.Green = 0;
-            cor.Red = 255;
-            cor.Blue = 0;
-
-            Rectangle rect; // x, y, width, height
-
-
-
         }
 
         /// <summary>

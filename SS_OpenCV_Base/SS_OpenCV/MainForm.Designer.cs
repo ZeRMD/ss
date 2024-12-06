@@ -65,13 +65,12 @@
             this.histogramsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.autoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.arduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ImageViewer = new Emgu.CV.UI.ImageBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.teste2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.arduinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sinalReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -92,8 +91,7 @@
             this.autoresToolStripMenuItem,
             this.evalToolStripMenuItem,
             this.arduinoToolStripMenuItem,
-            this.testeToolStripMenuItem,
-            this.teste2ToolStripMenuItem});
+            this.sinalReaderToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
@@ -150,7 +148,7 @@
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -352,12 +350,12 @@
             this.evalToolStripMenuItem.Text = "Eval";
             this.evalToolStripMenuItem.Click += new System.EventHandler(this.evalToolStripMenuItem_Click);
             // 
-            // testeToolStripMenuItem
+            // arduinoToolStripMenuItem
             // 
-            this.testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            this.testeToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
-            this.testeToolStripMenuItem.Text = "Teste";
-            this.testeToolStripMenuItem.Click += new System.EventHandler(this.testeToolStripMenuItem_Click);
+            this.arduinoToolStripMenuItem.Name = "arduinoToolStripMenuItem";
+            this.arduinoToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.arduinoToolStripMenuItem.Text = "Arduino";
+            this.arduinoToolStripMenuItem.Click += new System.EventHandler(this.arduinoToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -401,19 +399,12 @@
             this.statusLabel.Size = new System.Drawing.Size(60, 20);
             this.statusLabel.Text = "X :-   Y:-";
             // 
-            // teste2ToolStripMenuItem
+            // sinalReaderToolStripMenuItem
             // 
-            this.teste2ToolStripMenuItem.Name = "teste2ToolStripMenuItem";
-            this.teste2ToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
-            this.teste2ToolStripMenuItem.Text = "Teste2";
-            this.teste2ToolStripMenuItem.Click += new System.EventHandler(this.teste2ToolStripMenuItem_Click);
-            // 
-            // arduinoToolStripMenuItem
-            // 
-            this.arduinoToolStripMenuItem.Name = "arduinoToolStripMenuItem";
-            this.arduinoToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
-            this.arduinoToolStripMenuItem.Text = "Arduino";
-            this.arduinoToolStripMenuItem.Click += new System.EventHandler(this.arduinoToolStripMenuItem_Click);
+            this.sinalReaderToolStripMenuItem.Name = "sinalReaderToolStripMenuItem";
+            this.sinalReaderToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.sinalReaderToolStripMenuItem.Text = "SinalReader";
+            this.sinalReaderToolStripMenuItem.Click += new System.EventHandler(this.sinalReaderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -481,9 +472,8 @@
         private System.Windows.Forms.ToolStripMenuItem diferentiationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem histogramsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem binarizationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teste2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem arduinoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sinalReaderToolStripMenuItem;
     }
 }
 
