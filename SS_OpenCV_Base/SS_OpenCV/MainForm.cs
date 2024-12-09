@@ -17,6 +17,10 @@ namespace SS_OpenCV
         Image<Bgr, Byte> imgUndo = null; // undo backup image - UNDO
         string title_bak = "";
 
+        int mouseX, mouseY;
+        bool mouseFlag = false;
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -423,12 +427,19 @@ namespace SS_OpenCV
             if ((scaleFactor <= 0))
                 return;
 
+            mouseFlag = true;
+
+            while (mouseFlag)
+            {
+                Application.DoEvents();
+            }
+
             Cursor = Cursors.WaitCursor; // clock cursor 
 
             //copy Undo Image
             imgUndo = img.Copy();
 
-            ImageClass.Scale(img, img.Copy(), (float)scaleFactor);
+            ImageClass.Scale_point_xy(img, img.Copy(), (float)scaleFactor, mouseX, mouseY);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen
@@ -567,6 +578,17 @@ namespace SS_OpenCV
             ImageViewer.Refresh(); // refresh image on the screen
 
             Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void ImageViewer_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mouseFlag)
+            {
+                mouseX = e.X;
+                mouseY = e.Y;
+
+                mouseFlag = false;
+            }
         }
 
         private void otsuToolStripMenuItem_Click(object sender, EventArgs e)

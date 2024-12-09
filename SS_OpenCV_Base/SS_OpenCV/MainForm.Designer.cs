@@ -274,28 +274,28 @@
             // translationToolStripMenuItem
             // 
             this.translationToolStripMenuItem.Name = "translationToolStripMenuItem";
-            this.translationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.translationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.translationToolStripMenuItem.Text = "Translation";
             this.translationToolStripMenuItem.Click += new System.EventHandler(this.translationToolStripMenuItem_Click);
             // 
             // rotationToolStripMenuItem
             // 
             this.rotationToolStripMenuItem.Name = "rotationToolStripMenuItem";
-            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rotationToolStripMenuItem.Text = "Rotation";
             this.rotationToolStripMenuItem.Click += new System.EventHandler(this.rotationToolStripMenuItem_Click);
             // 
             // zoomToolStripMenuItem
             // 
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomToolStripMenuItem.Text = "Zoom";
             this.zoomToolStripMenuItem.Click += new System.EventHandler(this.zoomToolStripMenuItem_Click);
             // 
             // zoomWithMouseToolStripMenuItem
             // 
             this.zoomWithMouseToolStripMenuItem.Name = "zoomWithMouseToolStripMenuItem";
-            this.zoomWithMouseToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.zoomWithMouseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomWithMouseToolStripMenuItem.Text = "Zoom with Mouse";
             this.zoomWithMouseToolStripMenuItem.Click += new System.EventHandler(this.zoomWithMouseToolStripMenuItem_Click);
             // 
@@ -402,6 +402,7 @@
             this.ImageViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.ImageViewer.TabIndex = 2;
             this.ImageViewer.TabStop = false;
+            this.ImageViewer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ImageViewer_MouseClick);
             this.ImageViewer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImageViewer_MouseMove);
             // 
             // statusStrip1
