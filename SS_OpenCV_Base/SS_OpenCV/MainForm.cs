@@ -51,7 +51,7 @@ namespace SS_OpenCV
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ImageViewer.Image.Save(saveFileDialog1.FileName);
+                ImageViewer.Image.Save(saveFileDialog1.FileName + ".png");
             }
         }
 
@@ -515,7 +515,35 @@ namespace SS_OpenCV
                 return;
         }
 
-        private void binarizationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void arduinoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArduinoForm AF = new ArduinoForm();
+            
+            if (AF.ShowDialog() != DialogResult.Cancel)
+                return;
+        }
+
+        private void sinalReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) // verify if the image is already opened
+                return;
+
+            Cursor = Cursors.WaitCursor; // clock cursor 
+
+            //copy Undo Image
+            imgUndo = img.Copy();
+
+            Results results;
+
+            ImageClass.SinalReader(img, img.Copy(), 0, out results);
+
+            ImageViewer.Image = img;
+            ImageViewer.Refresh(); // refresh image on the screen
+
+            Cursor = Cursors.Default; // normal cursor
+        }
+
+        private void manualThresHoldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (img == null) // verify if the image is already opened
                 return;
@@ -541,15 +569,7 @@ namespace SS_OpenCV
             Cursor = Cursors.Default; // normal cursor
         }
 
-        private void arduinoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ArduinoForm AF = new ArduinoForm();
-            
-            if (AF.ShowDialog() != DialogResult.Cancel)
-                return;
-        }
-
-        private void sinalReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void otsuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (img == null) // verify if the image is already opened
                 return;
@@ -559,9 +579,7 @@ namespace SS_OpenCV
             //copy Undo Image
             imgUndo = img.Copy();
 
-            Results results;
-
-            ImageClass.SinalReader(img, img.Copy(), 0, out results);
+            ImageClass.ConvertToBW_Otsu(img);
 
             ImageViewer.Image = img;
             ImageViewer.Refresh(); // refresh image on the screen

@@ -49,7 +49,7 @@ namespace SS_OpenCV
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                ImageViewer.Image.Save(saveFileDialog1.FileName);
+                ImageViewer.Image.Save(saveFileDialog1.FileName + ".jpg");
             }
         }
 

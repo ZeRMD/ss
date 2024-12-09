@@ -3241,6 +3241,7 @@ namespace SS_OpenCV
                             }
                             index += (widthTotal - obj[2] * nChan);
                         }
+
                         // Forma do objeto(redondo ou triangular) usando a área da metade de cima e a área da metade de baixo do objeto
                         if (Math.Abs(areaCima - areaBaixo) > area / 10)
                         {
@@ -3425,7 +3426,7 @@ namespace SS_OpenCV
                         digito = i;
                     }
                 }
-                Console.WriteLine(digito);
+                // Console.WriteLine(digito);
                 return digito;
             }
         }
@@ -3441,7 +3442,9 @@ namespace SS_OpenCV
         {
             unsafe
             {
-
+                //*****************//*****************//
+                // Declaracao de Variaveis
+                //*****************//*****************//
                 sinalResult = new Results();
                 
                 List<int[]> objetosSinal = new List<int[]>();
@@ -3464,51 +3467,60 @@ namespace SS_OpenCV
 
                 Rectangle rect; // x, y, width, height
 
+                //*****************//*****************//
+                // Funcionamento
+                //*****************//*****************//
+
                 workingImage = imgOrig.Copy();
 
+                // Pre-Processamento - Filtro de Vermelho
                 FiltroDeVermelho(workingImage);
 
+                // Segmentação - Binarizacao
                 ConvertToBW_Otsu(workingImage);
 
                 workingImage2 = workingImage.Copy();
 
+                //Identificacao de Objetos Conectados
                 labelsSinal = ConectedComponentsAlgIter(workingImage);
-
+                
+                // Reconhecimento de Sinais
                 objetosSinal = EncontrarObjetos(workingImage, labelsSinal);
-
                 objetosSinalFiltrados = FiltrarObjetosProcurarSinal(workingImage2, objetosSinal);
 
+                // Identificacao de Caracteres
                 foreach (var obj in objetosSinalFiltrados)
                 {
+                    // Resultados - sinais de transito destacados por um retangulo
                     Sinal sinal = new Sinal();
-
                     rect = new Rectangle(obj[0], obj[1], obj[2], obj[3]); // x, y, width, height
-                    sinal.sinalRect = rect; // RETANGULO DO SINAL
+                    sinal.sinalRect = rect;
                     imgDest.Draw(rect, cor, 1);
 
-                    if (obj[4] == 0)
+                    if (obj[4] == 0) // Se for sinal de perigo nem vamos ver dos digitos
                     {
+                        // Resultados - Tipo do sinal de transito
                         sinal.sinalEnum = ResultsEnum.sinal_perigo; // Perigo
                     } else
                     {
                         workingSignal1 = imgOrig.Copy(rect);
-                        FiltroDeCor(workingSignal1);
-                        ConvertToBW_Otsu(workingSignal1);
                         
-                        /*
-                        if (level == 2) // Para sinais com 3 números
-                        {
-                            Dilatacao(workingSignal1);
-                        }*/
+                        // Pre-Processamento - Filtro de Cor
+                        FiltroDeCor(workingSignal1);
+
+                        // Segmentação - Binarizacao
+                        ConvertToBW_Otsu(workingSignal1);
                         
                         workingSignal2 = workingSignal1.Copy();
 
+                        //Identificacao de Objetos Conectados
                         labelsDigitos = ConectedComponentsAlgIter(workingSignal2);
-
+                        
+                        // Reconhecimento de Digitos
                         objetosDigitos = EncontrarObjetos(workingSignal2, labelsDigitos);
-
                         objetosDigitosFiltrados = FiltrarObjetosDentroSinal(workingSignal2, objetosDigitos);
 
+                        // Identificacao de Caracteres
                         if (objetosDigitosFiltrados.Count > 1 && obj[4] == 1) // && obj[4] == 1
                         {
                             sinal.sinalEnum = ResultsEnum.sinal_limite_velocidade; // Velocidade
@@ -3516,20 +3528,27 @@ namespace SS_OpenCV
                             {
                                 Digito digito = new Digito();
                                 int digitoNum;
+
+                                // Resultados - sinais de transito destacados por um retangulo
                                 rect = new Rectangle(digitoIMG[0] + obj[0], digitoIMG[1] + obj[1], digitoIMG[2], digitoIMG[3]); // x, y, width, height
                                 imgDest.Draw(rect, cor, 1);
-                                digito.digitoRect = rect; // RETANGULO DO DIGITO
+                                digito.digitoRect = rect;
+
+                                // Identificacao de Caracteres
                                 rect = new Rectangle(digitoIMG[0], digitoIMG[1], digitoIMG[2], digitoIMG[3]); // x, y, width, height
                                 digitoNum = CompararDigito(workingSignal1.Copy(rect));
-                                digito.digito = digitoNum.ToString(); // VALOR DO DIGITO // Transformar o inteiro em string
+
+                                // Resultados - Adicionar digito ao sinal
+                                digito.digito = digitoNum.ToString();// Transformar o inteiro em string
                                 sinal.digitos.Add(digito);
                             }
                         } else
                         {
+                            // Resultados - Adicionar digito ao sinal
                             sinal.sinalEnum = ResultsEnum.sinal_proibicao; // Obrigacao
                         }
                     }
-
+                    // Resultados - Adicionar sinal aos resultados
                     sinalResult.results.Add(sinal);
                 }
             }
